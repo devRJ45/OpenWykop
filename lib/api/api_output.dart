@@ -6,11 +6,11 @@ class ApiOutput<T extends ApiModel> extends AbstractApiOutput {
 
   T? data;
 
-  ApiOutput(super.json, super.modelConstructor);
+  ApiOutput(super.rawData, super.modelConstructor);
 
 
   @override
   void parseData () {
-    this.data = modelConstructor(json['data']);
+    this.data = modelConstructor(apiResponse.json['data']);
   }
 }

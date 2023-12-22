@@ -6,11 +6,11 @@ class ApiOutputList<T extends ApiModel> extends AbstractApiOutput {
 
   List<T?>? data;
 
-  ApiOutputList(super.json, super.modelConstructor);
+  ApiOutputList(super.rawData, super.modelConstructor);
 
 
   @override
   void parseData () {
-    this.data = modelConstructor(json['data']);
+    this.data = modelConstructor(apiResponse.json['data']);
   }
 }

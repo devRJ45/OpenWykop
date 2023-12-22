@@ -1,21 +1,24 @@
+import 'package:openwykop/api/api_request_response.dart';
+
 import 'models/models.dart';
 
 abstract class AbstractApiOutput<T extends ApiModel> {
 
-  Map<String, dynamic> json;
+  ApiRequestResponse apiResponse;
   Pagination? pagination;
   WykopError? wykopError;
 
   Function modelConstructor;
 
-  AbstractApiOutput(this.json, this.modelConstructor) {
-    if (json['data'] == null) {
-      wykopError = WykopError.fromJson(json);
+  AbstractApiOutput(ApiRequestResponse this.apiResponse, this.modelConstructor) {
+
+    if (apiResponse.json['data'] == null) {
+      wykopError = WykopError.fromJson(apiResponse.json);
       return;
     }
 
-    if (json['pagination'] != null) {
-      pagination = Pagination.fromJson(json['pagination']);
+    if (apiResponse.json['pagination'] != null) {
+      pagination = Pagination.fromJson(apiResponse.json['pagination']);
     }
     
     parseData();
