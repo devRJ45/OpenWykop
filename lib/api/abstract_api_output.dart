@@ -8,9 +8,9 @@ abstract class AbstractApiOutput<T extends ApiModel> {
   Pagination? pagination;
   WykopError? wykopError;
 
-  Function modelConstructor;
+  Function? modelConstructor;
 
-  AbstractApiOutput(ApiRequestResponse this.apiResponse, this.modelConstructor) {
+  AbstractApiOutput(this.apiResponse, [this.modelConstructor]) {
 
     if (apiResponse.json['data'] == null) {
       wykopError = WykopError.fromJson(apiResponse.json);
@@ -25,4 +25,22 @@ abstract class AbstractApiOutput<T extends ApiModel> {
   }
 
   void parseData ();
+
+  ApiModel? autoParse(Map<String, dynamic> jsonData) {
+    if (jsonData['resource'] == null) {
+      return null;
+    }
+
+    switch (jsonData['resource']) {
+      case 'link':
+        return Link.fromJson(jsonData);
+      case 'entry':
+        return Entry.fromJson(jsonData);
+      case 'link_comment':
+      case 'entry_comment':
+        return Comment.fromJson(jsonData);
+    }
+
+    return null;
+  }
 }
