@@ -85,8 +85,6 @@ class ApiRequest {
         break;
     }
 
-    print(res.body);
-
     return ApiRequestResponse(res.statusCode, res.body);
   }
 }
