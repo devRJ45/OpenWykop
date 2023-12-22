@@ -23,7 +23,9 @@ class AutocompleteUser extends ApiModel {
     this.followersQty,
   );
 
+  @override
   factory  AutocompleteUser.fromJson(Map<String, dynamic> json) => _$AutocompleteUserFromJson(json);
+  @override
   Map<String, dynamic> toJson() => _$AutocompleteUserToJson(this);
 
   static List<AutocompleteUser?>? fromJsonList (List<dynamic> jsonList) {
