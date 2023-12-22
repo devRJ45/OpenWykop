@@ -12,8 +12,16 @@ abstract class AbstractApiOutput<T extends ApiModel> {
 
   AbstractApiOutput(this.apiResponse, [this.modelConstructor]) {
 
+    if (apiResponse.json.isEmpty) {
+      return;
+    }
+
     if (apiResponse.json['data'] == null) {
       wykopError = WykopError.fromJson(apiResponse.json);
+      return;
+    }
+
+    if (apiResponse.json['data'].isEmpty) {
       return;
     }
 

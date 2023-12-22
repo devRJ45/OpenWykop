@@ -9,6 +9,8 @@ class ApiRequestResponse {
   ApiRequestResponse(this. statusCode, this.rawData) {
     if (rawData.isNotEmpty) {
       json = jsonDecode(rawData);
+    } else {
+      json = {};
     }
   }
 }
