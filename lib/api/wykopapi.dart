@@ -9,6 +9,7 @@ class WykopApi {
 
   late UsersResource users;
   late TagsResource tags;
+  late ProfilesResource profiles;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -17,5 +18,6 @@ class WykopApi {
   void initializeResources () {
     users = UsersResource(apiProperties);
     tags = TagsResource(apiProperties);
+    profiles = ProfilesResource(apiProperties);
   }
 }
