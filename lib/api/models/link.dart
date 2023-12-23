@@ -30,6 +30,9 @@ class Link extends StreamItem {
   LinkActions? actions;
   bool? archive;
   String? deleted;
+  List<Alert>? alerts;
+  bool? favourite;
+  LinkAma? ama;
 
   Link(
     this.editable,
@@ -53,6 +56,9 @@ class Link extends StreamItem {
     this.actions,
     this.archive,
     this.deleted,
+    this.alerts,
+    this.favourite,
+    this.ama,
   );
 
   @override

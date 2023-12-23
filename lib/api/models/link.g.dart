@@ -40,6 +40,13 @@ Link _$LinkFromJson(Map<String, dynamic> json) => Link(
           : LinkActions.fromJson(json['actions'] as Map<String, dynamic>),
       json['archive'] as bool?,
       json['deleted'] as String?,
+      (json['alerts'] as List<dynamic>?)
+          ?.map((e) => Alert.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      json['favourite'] as bool?,
+      json['ama'] == null
+          ? null
+          : LinkAma.fromJson(json['ama'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$LinkToJson(Link instance) => <String, dynamic>{
@@ -64,4 +71,7 @@ Map<String, dynamic> _$LinkToJson(Link instance) => <String, dynamic>{
       'actions': instance.actions,
       'archive': instance.archive,
       'deleted': instance.deleted,
+      'alerts': instance.alerts,
+      'favourite': instance.favourite,
+      'ama': instance.ama,
     };
