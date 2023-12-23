@@ -9,15 +9,17 @@ part 'profile_actions.g.dart';
 class ProfileActions extends ApiModel {
 
   bool? update;
-  bool? update_gender;
-  bool? update_note;
+  @JsonKey(name: 'update_gender')
+  bool? updateGender;
+  @JsonKey(name: 'update_note')
+  bool? updateNote;
   bool? blacklist;
   bool? follow;
 
   ProfileActions(
     this.update,
-    this.update_gender,
-    this.update_note,
+    this.updateGender,
+    this.updateNote,
     this.blacklist,
     this.follow,
   );

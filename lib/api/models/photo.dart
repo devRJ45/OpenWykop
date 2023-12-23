@@ -11,7 +11,7 @@ class Photo extends ApiModel {
   String? key;
   String? label;
   @JsonKey(name: 'mime_type')
-  String? mime_type;
+  String? mimeType;
   String? url;
   int? size;
   int? width;
@@ -20,7 +20,7 @@ class Photo extends ApiModel {
   Photo(
     this.key,
     this.label,
-    this.mime_type,
+    this.mimeType,
     this.url,
     this.size,
     this.width,

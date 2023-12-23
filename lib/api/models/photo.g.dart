@@ -19,7 +19,7 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) => Photo(
 Map<String, dynamic> _$PhotoToJson(Photo instance) => <String, dynamic>{
       'key': instance.key,
       'label': instance.label,
-      'mime_type': instance.mime_type,
+      'mime_type': instance.mimeType,
       'url': instance.url,
       'size': instance.size,
       'width': instance.width,

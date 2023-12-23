@@ -18,8 +18,8 @@ ProfileActions _$ProfileActionsFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProfileActionsToJson(ProfileActions instance) =>
     <String, dynamic>{
       'update': instance.update,
-      'update_gender': instance.update_gender,
-      'update_note': instance.update_note,
+      'update_gender': instance.updateGender,
+      'update_note': instance.updateNote,
       'blacklist': instance.blacklist,
       'follow': instance.follow,
     };
