@@ -42,6 +42,8 @@ abstract class AbstractApiOutput<T extends ApiModel> {
     switch (jsonData['resource']) {
       case 'link':
         return Link.fromJson(jsonData);
+      case 'recommended_link':
+        return RecomendedLink.fromJson(jsonData);
       case 'entry':
         return Entry.fromJson(jsonData);
       case 'link_comment':
