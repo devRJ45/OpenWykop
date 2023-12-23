@@ -189,4 +189,89 @@ class LinksResource extends ApiResource {
     return ApiOutput(result);
   }
 
+  //comments section
+  Future<ApiOutputList<Comment>> getComments (int linkId, {int? page, int? limit, String? sort, bool? ama}) async {
+    Map<String, String> queryParameters = {};
+    if (page != null) queryParameters['page'] = page.toString();
+    if (limit != null) queryParameters['limit'] = limit.toString();
+    if (sort != null) queryParameters['sort'] = sort;
+    if (ama != null) queryParameters['ama'] = ama ? 'true' : 'false';
+
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments'], queryParameters: queryParameters).request();
+
+    return ApiOutputList<Comment>(result, Comment.fromJsonList);
+  }
+
+  Future<ApiOutput<Comment>> addComment (int linkId, String content, bool adult, [String? embedKey, String? photoKey]) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments'], method: RequestMethod.POST, bodyData: {
+      'content': content,
+      'embed': embedKey,
+      'photo': photoKey,
+      'adult': adult
+    }).request();
+
+    return ApiOutput<Comment>(result, Comment.fromJson);
+  }
+
+  Future<ApiOutput<Comment>> addSubComment (int linkId, int parentCommentId, String content, bool adult, [String? embedKey, String? photoKey]) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', parentCommentId.toString()], method: RequestMethod.POST, bodyData: {
+      'content': content,
+      'embed': embedKey,
+      'photo': photoKey,
+      'adult': adult
+    }).request();
+
+    return ApiOutput<Comment>(result, Comment.fromJson);
+  }
+
+  Future<ApiOutput<Comment>> getComment (int linkId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', commentId.toString()]).request();
+
+    return ApiOutput<Comment>(result, Comment.fromJson);
+  }
+
+  Future<ApiOutput<Comment>> editComment (int linkId, int commentId, String content, bool adult, [String? embedKey, String? photoKey]) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', commentId.toString()], method: RequestMethod.POST, bodyData: {
+      'content': content,
+      'embed': embedKey,
+      'photo': photoKey,
+      'adult': adult
+    }).request();
+
+    return ApiOutput<Comment>(result, Comment.fromJson);
+  }
+
+  Future<ApiOutput> removeComment (int linkId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', commentId.toString()], method: RequestMethod.DELETE).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutputList<Comment>> getSubComments (int linkId, int commentId, {int? page}) async {
+    Map<String, String> queryParameters = {};
+    if (page != null) queryParameters['page'] = page.toString();
+
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', commentId.toString(), 'comments'], queryParameters: queryParameters).request();
+
+    return ApiOutputList<Comment>(result, Comment.fromJsonList);
+  }
+
+  Future<ApiOutput> backVoteComment (int linkId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', commentId.toString(), 'votes'], method: RequestMethod.DELETE).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> upVoteComment (int linkId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', commentId.toString(), 'votes', 'up'], method: RequestMethod.POST).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> downVoteComment (int linkId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'comments', commentId.toString(), 'votes', 'down'], method: RequestMethod.POST).request();
+
+    return ApiOutput(result);
+  }
+
 }
