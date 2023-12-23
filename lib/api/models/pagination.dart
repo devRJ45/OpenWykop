@@ -11,10 +11,14 @@ class Pagination extends ApiModel {
   @JsonKey(name: 'per_page')
   int? perPage;
   int? total;
+  String? next;
+  String? prev;
 
   Pagination(
     perPage,
     total,
+    next,
+    prev
   );
 
   @override
