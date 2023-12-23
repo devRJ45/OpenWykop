@@ -122,4 +122,56 @@ class LinksResource extends ApiResource {
     return ApiOutput<Url>(result, Url.fromJson);
   }
 
+  //related section
+  Future<ApiOutputList<Related>> getRelated (int linkId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'related']).request();
+
+    return ApiOutputList<Related>(result, Related.fromJsonList);
+  }
+
+  Future<ApiOutput> addRelated (int linkId, String title, String url, bool adult) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'related'], method: RequestMethod.POST, bodyData: {
+      'title': title,
+      'url': url,
+      'adult': adult,
+    }).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> removeRelated (int linkId, int relatedId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'related', relatedId.toString()], method: RequestMethod.DELETE).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> updateRelated (int linkId, int relatedId, String title, String url, bool adult) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'related', relatedId.toString()], method: RequestMethod.PUT, bodyData: {
+      'title': title,
+      'url': url,
+      'adult': adult,
+    }).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> backVoteRelated (int linkId, int relatedId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'related', relatedId.toString(), 'votes'], method: RequestMethod.DELETE).request();
+
+    return ApiOutput(result);
+  }
+
+  
+  Future<ApiOutput> upVoteRelated (int linkId, int relatedId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'related', relatedId.toString(), 'votes', 'up'], method: RequestMethod.POST).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> downVoteRelated (int linkId, int relatedId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'related', relatedId.toString(), 'votes', 'down'], method: RequestMethod.POST).request();
+
+    return ApiOutput(result);
+  }
+
 }
