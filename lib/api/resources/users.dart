@@ -1,4 +1,5 @@
 import 'package:openwykop/api/api_properties.dart';
+import 'package:openwykop/api/api_request_response.dart';
 import 'package:openwykop/api/resources/resoruces.dart';
 
 import '../api_output_list.dart';
@@ -9,7 +10,7 @@ class UsersResource extends ApiResource {
   UsersResource (ApiProperties apiProperties) : super(apiProperties, 'users');
 
   Future<ApiOutputList<AutocompleteUser>> autocomplete (String query) async {
-    Map<String, dynamic> result = await ApiRequest(apiProperties, [resourcePath, 'autocomplete'], queryParameters: {'query': query}).request();
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, 'autocomplete'], queryParameters: {'query': query}).request();
 
     return ApiOutputList<AutocompleteUser>(result, AutocompleteUser.fromJsonList);
   }
