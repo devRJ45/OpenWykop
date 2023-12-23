@@ -6,7 +6,14 @@ import 'package:openwykop/api/resources/resoruces.dart';
 import '../api_output_list.dart';
 import '../api_request.dart';
 import '../models/models.dart';
-import '../wykopapi.dart';
+
+enum DownVoteReason {
+  duplicate,
+  spam,
+  fake,
+  wrong,
+  invalid,
+}
 
 class LinksResource extends ApiResource {
   LinksResource (ApiProperties apiProperties) : super(apiProperties, 'links');

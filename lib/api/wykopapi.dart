@@ -3,14 +3,6 @@ import 'package:openwykop/api/api_properties.dart';
 
 import 'resources/resoruces.dart';
 
-enum DownVoteReason {
-  duplicate,
-  spam,
-  fake,
-  wrong,
-  invalid,
-}
-
 class WykopApi {
 
   ApiProperties apiProperties;
