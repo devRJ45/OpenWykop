@@ -174,4 +174,19 @@ class LinksResource extends ApiResource {
     return ApiOutput(result);
   }
 
+  //ama section
+  Future<ApiOutput> startAma (int linkId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'ama', 'start'], method: RequestMethod.PUT).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> finishAma (int linkId, String content) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, linkId.toString(), 'ama', 'finish'], method: RequestMethod.POST, bodyData: {
+      'content': content
+    }).request();
+
+    return ApiOutput(result);
+  }
+
 }
