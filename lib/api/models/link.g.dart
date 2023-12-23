@@ -18,7 +18,7 @@ Link _$LinkFromJson(Map<String, dynamic> json) => Link(
           : LinkSource.fromJson(json['source'] as Map<String, dynamic>),
       json['author'] == null
           ? null
-          : Author.fromJson(json['author'] as Map<String, dynamic>),
+          : ProfileShort.fromJson(json['author'] as Map<String, dynamic>),
       json['published_at'] as String?,
       json['votes'] == null
           ? null

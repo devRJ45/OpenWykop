@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'author_actions.dart';
+part of 'profile_actions.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthorActions _$AuthorActionsFromJson(Map<String, dynamic> json) =>
-    AuthorActions(
+ProfileActions _$ProfileActionsFromJson(Map<String, dynamic> json) =>
+    ProfileActions(
       json['update'] as bool?,
       json['update_gender'] as bool?,
       json['update_note'] as bool?,
@@ -15,7 +15,7 @@ AuthorActions _$AuthorActionsFromJson(Map<String, dynamic> json) =>
       json['follow'] as bool?,
     );
 
-Map<String, dynamic> _$AuthorActionsToJson(AuthorActions instance) =>
+Map<String, dynamic> _$ProfileActionsToJson(ProfileActions instance) =>
     <String, dynamic>{
       'update': instance.update,
       'update_gender': instance.update_gender,

@@ -11,7 +11,7 @@ Comment _$CommentFromJson(Map<String, dynamic> json) => Comment(
       json['id'] as int?,
       json['author'] == null
           ? null
-          : Author.fromJson(json['author'] as Map<String, dynamic>),
+          : ProfileShort.fromJson(json['author'] as Map<String, dynamic>),
       json['device'] as String?,
       json['created_at'] as String?,
       json['voted'] as int?,

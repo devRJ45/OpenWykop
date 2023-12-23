@@ -10,7 +10,7 @@ class Entry extends StreamItem {
 
   bool? editable;
   int? id;
-  Author? author;
+  ProfileShort? author;
   String? device;
   @JsonKey(name: 'created_at')
   String? createdAt;

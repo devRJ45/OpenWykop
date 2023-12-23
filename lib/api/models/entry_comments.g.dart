@@ -8,8 +8,8 @@ part of 'entry_comments.dart';
 
 EntryComments _$EntryCommentsFromJson(Map<String, dynamic> json) =>
     EntryComments(
-      (json['items'] as List<dynamic>)
-          .map((e) => Comment.fromJson(e as Map<String, dynamic>))
+      (json['items'] as List<dynamic>?)
+          ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['count'] as int?,
     );

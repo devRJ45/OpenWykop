@@ -12,7 +12,7 @@ class Tag extends ApiModel {
   @JsonKey(name: 'created_at')
   String? createdAt;
   String? name;
-  Author? author;
+  ProfileShort? author;
   bool? personal;
   Media? media;
   String? description;

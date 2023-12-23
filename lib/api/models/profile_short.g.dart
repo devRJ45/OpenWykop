@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'author.dart';
+part of 'profile_short.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Author _$AuthorFromJson(Map<String, dynamic> json) => Author(
+ProfileShort _$ProfileShortFromJson(Map<String, dynamic> json) => ProfileShort(
       json['username'] as String?,
       json['company'] as bool?,
       json['gender'] as String?,
@@ -19,12 +19,13 @@ Author _$AuthorFromJson(Map<String, dynamic> json) => Author(
       json['follow'] as bool?,
       json['rank'] == null
           ? null
-          : AuthorRank.fromJson(json['rank'] as Map<String, dynamic>),
+          : ProfileRank.fromJson(json['rank'] as Map<String, dynamic>),
     )..actions = json['actions'] == null
         ? null
-        : AuthorActions.fromJson(json['actions'] as Map<String, dynamic>);
+        : ProfileActions.fromJson(json['actions'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$AuthorToJson(Author instance) => <String, dynamic>{
+Map<String, dynamic> _$ProfileShortToJson(ProfileShort instance) =>
+    <String, dynamic>{
       'username': instance.username,
       'company': instance.company,
       'gender': instance.gender,

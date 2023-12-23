@@ -1,7 +1,4 @@
 export 'api_model.dart';
-export 'author.dart';
-export 'author_actions.dart';
-export 'author_rank.dart';
 export 'autocomplete_tag.dart';
 export 'autocomplete_user.dart';
 export 'comment.dart';
@@ -23,6 +20,9 @@ export 'media.dart';
 export 'pagination.dart';
 export 'parent_location.dart';
 export 'photo.dart';
+export 'profile_actions.dart';
+export 'profile_rank.dart';
+export 'profile_short.dart';
 export 'stream_item.dart';
 export 'survey.dart';
 export 'survey_actions.dart';

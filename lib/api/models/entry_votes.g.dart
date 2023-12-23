@@ -10,7 +10,7 @@ EntryVotes _$EntryVotesFromJson(Map<String, dynamic> json) => EntryVotes(
       json['up'] as int?,
       json['down'] as int?,
       (json['users'] as List<dynamic>?)
-          ?.map((e) => Author.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => ProfileShort.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

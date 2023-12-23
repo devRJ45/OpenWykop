@@ -13,7 +13,7 @@ CommentParent _$CommentParentFromJson(Map<String, dynamic> json) =>
       json['slug'] as String?,
       json['author'] == null
           ? null
-          : Author.fromJson(json['author'] as Map<String, dynamic>),
+          : ProfileShort.fromJson(json['author'] as Map<String, dynamic>),
       (json['location'] as List<dynamic>?)
           ?.map((e) => ParentLocation.fromJson(e as Map<String, dynamic>))
           .toList(),

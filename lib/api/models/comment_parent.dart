@@ -11,7 +11,7 @@ class CommentParent extends ApiModel {
   String? resource;
   int? id;
   String? slug;
-  Author? author;
+  ProfileShort? author;
   List<ParentLocation>? location;
 
   CommentParent(

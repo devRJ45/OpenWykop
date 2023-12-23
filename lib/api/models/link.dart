@@ -16,7 +16,7 @@ class Link extends StreamItem {
   String? slug;
   String? description;
   LinkSource? source;
-  Author? author;
+  ProfileShort? author;
   @JsonKey(name: 'published_at')
   String? publishedAt;
   LinkVotes? votes;

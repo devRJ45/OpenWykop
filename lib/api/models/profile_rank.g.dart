@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'author_rank.dart';
+part of 'profile_rank.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthorRank _$AuthorRankFromJson(Map<String, dynamic> json) => AuthorRank(
+ProfileRank _$ProfileRankFromJson(Map<String, dynamic> json) => ProfileRank(
       json['position'] as int?,
       json['trend'] as int?,
     );
 
-Map<String, dynamic> _$AuthorRankToJson(AuthorRank instance) =>
+Map<String, dynamic> _$ProfileRankToJson(ProfileRank instance) =>
     <String, dynamic>{
       'position': instance.position,
       'trend': instance.trend,

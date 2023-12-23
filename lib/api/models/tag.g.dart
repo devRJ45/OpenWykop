@@ -12,7 +12,7 @@ Tag _$TagFromJson(Map<String, dynamic> json) => Tag(
       json['name'] as String?,
       json['author'] == null
           ? null
-          : Author.fromJson(json['author'] as Map<String, dynamic>),
+          : ProfileShort.fromJson(json['author'] as Map<String, dynamic>),
       json['personal'] as bool?,
       json['media'] == null
           ? null

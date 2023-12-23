@@ -10,7 +10,7 @@ class EntryVotes extends ApiModel {
 
   int? up;
   int? down;
-  List<Author>? users;
+  List<ProfileShort>? users;
 
   EntryVotes(
     this.up,

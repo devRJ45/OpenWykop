@@ -2,11 +2,11 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'models.dart';
 
-part 'author.g.dart';
+part 'profile_short.g.dart';
 
 @JsonSerializable()
 
-class Author extends ApiModel {
+class ProfileShort extends ApiModel {
 
   String? username;
   bool? company;
@@ -18,10 +18,10 @@ class Author extends ApiModel {
   String? color;
   bool? verified;
   bool? follow;
-  AuthorRank? rank; 
-  AuthorActions? actions;
+  ProfileRank? rank; 
+  ProfileActions? actions;
 
-  Author(
+  ProfileShort(
     this.username,
     this.company,
     this.gender,
@@ -36,12 +36,12 @@ class Author extends ApiModel {
   );
 
   @override
-  factory  Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
+  factory  ProfileShort.fromJson(Map<String, dynamic> json) => _$ProfileShortFromJson(json);
   @override
-  Map<String, dynamic> toJson() => _$AuthorToJson(this);
+  Map<String, dynamic> toJson() => _$ProfileShortToJson(this);
 
-  static List<Author?>? fromJsonList (List<dynamic> jsonList) {
-    return (jsonList as List<dynamic>?)?.map((e) => e == null ? null : Author.fromJson(e as Map<String, dynamic>)).toList();
+  static List<ProfileShort?>? fromJsonList (List<dynamic> jsonList) {
+    return (jsonList as List<dynamic>?)?.map((e) => e == null ? null : ProfileShort.fromJson(e as Map<String, dynamic>)).toList();
   }
 
 }

@@ -75,10 +75,10 @@ class TagsResource extends ApiResource {
     return ApiOutput<Count>(result, Count.fromJson);
   }
 
-  Future<ApiOutputList<Author>> getTagCoauthors (String tagName) async {
+  Future<ApiOutputList<ProfileShort>> getTagCoauthors (String tagName) async {
     ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, tagName, 'users']).request();
 
-    return ApiOutputList<Author>(result, Author.fromJsonList);
+    return ApiOutputList<ProfileShort>(result, ProfileShort.fromJsonList);
   }
 
   Future<ApiOutput> addTagCoauthor (String tagName, String username) async {

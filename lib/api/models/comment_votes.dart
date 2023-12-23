@@ -10,7 +10,7 @@ class CommentVotes extends ApiModel {
 
   int? up;
   int? down;
-  List<Author>? users;
+  List<ProfileShort>? users;
 
   CommentVotes(
     this.up,
