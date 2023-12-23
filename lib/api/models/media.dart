@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'models.dart';
@@ -11,9 +12,13 @@ class Media extends ApiModel {
   Photo? photo;
   Embed? embed;
   Survey? survey;
+  Photo? icon;
 
   Media(
     this.photo,
+    this.embed,
+    this.survey,
+    this.icon,
   );
 
   @override
