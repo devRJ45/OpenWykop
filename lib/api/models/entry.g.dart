@@ -36,7 +36,7 @@ Entry _$EntryFromJson(Map<String, dynamic> json) => Entry(
           ? null
           : EntryActions.fromJson(json['actions'] as Map<String, dynamic>),
       json['archive'] as bool?,
-      json['deleted'] as bool?,
+      json['deleted'] as String?,
     );
 
 Map<String, dynamic> _$EntryToJson(Entry instance) => <String, dynamic>{

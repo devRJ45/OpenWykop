@@ -27,7 +27,7 @@ Comment _$CommentFromJson(Map<String, dynamic> json) => Comment(
           : CommentVotes.fromJson(json['votes'] as Map<String, dynamic>),
       json['deletable'] as bool?,
       json['blacklist'] as bool?,
-      json['deleted'] as bool?,
+      json['deleted'] as String?,
       json['resource'] as String?,
       json['actions'] == null
           ? null

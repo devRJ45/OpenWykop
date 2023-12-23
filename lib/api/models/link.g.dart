@@ -39,7 +39,7 @@ Link _$LinkFromJson(Map<String, dynamic> json) => Link(
           ? null
           : LinkActions.fromJson(json['actions'] as Map<String, dynamic>),
       json['archive'] as bool?,
-      json['deleted'] as bool?,
+      json['deleted'] as String?,
     );
 
 Map<String, dynamic> _$LinkToJson(Link instance) => <String, dynamic>{

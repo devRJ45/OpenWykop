@@ -23,7 +23,7 @@ class Comment extends StreamItem {
   CommentVotes? votes;
   bool? deletable;
   bool? blacklist;
-  bool? deleted;
+  String? deleted;
   CommentActions? actions;
   bool? archive;
   String? slug;

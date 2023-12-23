@@ -28,7 +28,7 @@ class Entry extends StreamItem {
   int? parentId;
   EntryActions? actions;
   bool? archive;
-  bool? deleted;
+  String? deleted;
 
   Entry(
     this.editable,

@@ -29,7 +29,7 @@ class Link extends StreamItem {
   bool? deletable;
   LinkActions? actions;
   bool? archive;
-  bool? deleted;
+  String? deleted;
 
   Link(
     this.editable,
