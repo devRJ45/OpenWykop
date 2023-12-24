@@ -88,5 +88,76 @@ class MicroblogResource extends ApiResource {
     return ApiOutput<Count>(result, Count.fromJson);
   }
 
+  Future<ApiOutputList<Comment>> getComments (int entryId, {int? page, int? limit}) async {
+    Map<String, String> queryParameters = {};
+    if (page != null) queryParameters['page'] = page.toString();
+    if (limit != null) queryParameters['limit'] = limit.toString();
+
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments'], queryParameters: queryParameters).request();
+
+    return ApiOutputList<Comment>(result, Comment.fromJsonList);
+  }
+
+  Future<ApiOutput<Comment>> addComment (int entryId, String content, bool adult, [String? photoKey, String? embedKey]) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments'], method: RequestMethod.POST, bodyData: {
+      'content': content,
+      'photo': photoKey,
+      'embed': embedKey,
+      'adult': adult,
+    }).request();
+
+    return ApiOutput<Comment>(result, Comment.fromJson);
+  }
+
+  Future<ApiOutput<Count>> getNewerComments (int entryId, [String? date]) async {
+    Map<String, String> queryParameters = {};
+    if (date != null) queryParameters['date'] = date.toString();
+
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments', 'newer'], queryParameters: queryParameters).request();
+
+    return ApiOutput<Count>(result, Count.fromJson);
+  }
+
+  Future<ApiOutput<Comment>> getComment (int entryId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments', commentId.toString()]).request();
+
+    return ApiOutput<Comment>(result, Comment.fromJson);
+  }
+
+  Future<ApiOutput<Comment>> editComment (int entryId, int commentId, String content, bool adult, [String? photoKey, String? embedKey]) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments', commentId.toString()], method: RequestMethod.PUT, bodyData: {
+      'content': content,
+      'photo': photoKey,
+      'embed': embedKey,
+      'adult': adult,
+    }).request();
+
+    return ApiOutput<Comment>(result, Comment.fromJson);
+  }
+
+  Future<ApiOutput> removeComment (int entryId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments', commentId.toString()], method: RequestMethod.DELETE).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutputList<ProfileShort>> getCommentVotes (int entryId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments', commentId.toString(), 'votes']).request();
+
+    return ApiOutputList<ProfileShort>(result, ProfileShort.fromJsonList);
+  }
+
+  Future<ApiOutput> voteComment (int entryId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments', commentId.toString(), 'votes'], method: RequestMethod.POST).request();
+
+    return ApiOutput(result);
+  }
+
+  Future<ApiOutput> backVoteComment (int entryId, int commentId) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'comments', commentId.toString(), 'votes'], method: RequestMethod.DELETE).request();
+
+    return ApiOutput(result);
+  }
+
 }
 
