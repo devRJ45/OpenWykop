@@ -1,5 +1,6 @@
 export 'alert.dart';
 export 'api_model.dart';
+export 'auth.dart';
 export 'autocomplete_tag.dart';
 export 'autocomplete_user.dart';
 export 'badge.dart';
@@ -8,6 +9,7 @@ export 'comment.dart';
 export 'comment_actions.dart';
 export 'comment_parent.dart';
 export 'comment_votes.dart';
+export 'connect_url.dart';
 export 'count.dart';
 export 'embed.dart';
 export 'entry.dart';

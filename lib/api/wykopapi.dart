@@ -7,6 +7,7 @@ class WykopApi {
 
   ApiProperties apiProperties;
 
+  late AuthResource auth;
   late UsersResource users;
   late TagsResource tags;
   late ProfilesResource profiles;
@@ -19,6 +20,7 @@ class WykopApi {
   }
 
   void initializeResources () {
+    auth = AuthResource(apiProperties);
     users = UsersResource(apiProperties);
     tags = TagsResource(apiProperties);
     profiles = ProfilesResource(apiProperties);
