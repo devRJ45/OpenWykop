@@ -7,9 +7,9 @@ class ApiRequestResponse {
   late Map<String, dynamic> json;
 
   ApiRequestResponse(this. statusCode, this.rawData) {
-    if (rawData.isNotEmpty && rawData != '""') {
+    try {
       json = jsonDecode(rawData);
-    } else {
+    } catch (e) {
       json = {};
     }
   }
