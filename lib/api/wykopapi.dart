@@ -11,6 +11,7 @@ class WykopApi {
   late TagsResource tags;
   late ProfilesResource profiles;
   late LinksResource links;
+  late MicroblogResource microblog;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -21,5 +22,6 @@ class WykopApi {
     tags = TagsResource(apiProperties);
     profiles = ProfilesResource(apiProperties);
     links = LinksResource(apiProperties);
+    microblog = MicroblogResource(apiProperties);
   }
 }
