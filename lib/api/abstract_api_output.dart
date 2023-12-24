@@ -12,7 +12,7 @@ abstract class AbstractApiOutput<T extends ApiModel> {
 
   AbstractApiOutput(this.apiResponse, [this.modelConstructor]) {
 
-    if (apiResponse.json.isEmpty) {
+    if (apiResponse.json.isEmpty || apiResponse.json == '""') {
       return;
     }
 
