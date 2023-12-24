@@ -22,6 +22,7 @@ class ApiRequest {
   RequestMethod method;
   Map<String, dynamic> bodyData;
   Map<String, File> files;
+  bool sendWithoutBearerToken;
 
   ApiRequest(this.apiProperties, this.pathSegments, {
     this.queryParameters,
@@ -29,12 +30,13 @@ class ApiRequest {
     this.method = RequestMethod.GET,
     this.bodyData = const {},
     this.files = const {},
+    this.sendWithoutBearerToken = false,
   }) {
     initializeHeaders(headers);
   }
 
   void initializeHeaders (Map<String, String>? customHeaders) {
-    if (apiProperties.token != null) {
+    if (!sendWithoutBearerToken && apiProperties.token != null) {
       headers['Authorization'] = 'Bearer ${apiProperties.token!}';
     }
 
