@@ -44,6 +44,7 @@ export 'stream_item.dart';
 export 'survey.dart';
 export 'survey_actions.dart';
 export 'survey_answer.dart';
+export 'survey_id.dart';
 export 'tag.dart';
 export 'tag_actions.dart';
 export 'tag_info.dart';

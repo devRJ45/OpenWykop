@@ -159,5 +159,22 @@ class MicroblogResource extends ApiResource {
     return ApiOutput(result);
   }
 
+  Future<ApiOutput<SurveyId>> createSurvey (String question, List<String> answers) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, 'survey'], method: RequestMethod.POST, bodyData: {
+      'question': question,
+      'answers': answers,
+    }).request();
+
+    return ApiOutput<SurveyId>(result, SurveyId.fromJson);
+  }
+
+  Future<ApiOutput> voteSurvey (int entryId, int vote) async {
+    ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath, entryId.toString(), 'survey', 'votes'], method: RequestMethod.POST, bodyData: {
+      'vote': vote
+    }).request();
+
+    return ApiOutput(result);
+  }
+
 }
 
