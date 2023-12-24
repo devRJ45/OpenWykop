@@ -4,3 +4,4 @@ export 'tags.dart';
 export 'profiles.dart';
 export 'links.dart';
 export 'microblog.dart';
+export 'media.dart';

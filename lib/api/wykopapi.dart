@@ -12,6 +12,7 @@ class WykopApi {
   late ProfilesResource profiles;
   late LinksResource links;
   late MicroblogResource microblog;
+  late MediaResource media;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -23,5 +24,6 @@ class WykopApi {
     profiles = ProfilesResource(apiProperties);
     links = LinksResource(apiProperties);
     microblog = MicroblogResource(apiProperties);
+    media = MediaResource(apiProperties);
   }
 }
