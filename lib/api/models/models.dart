@@ -31,6 +31,7 @@ export 'link_vote.dart';
 export 'link_votes.dart';
 export 'media.dart';
 export 'message_short.dart';
+export 'note.dart';
 export 'notification.dart';
 export 'notifications_status.dart';
 export 'notification_badge.dart';

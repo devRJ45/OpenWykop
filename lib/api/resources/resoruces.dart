@@ -9,3 +9,4 @@ export 'pm.dart';
 export 'microblog.dart';
 export 'media.dart';
 export 'favourites.dart';
+export 'notes.dart';
