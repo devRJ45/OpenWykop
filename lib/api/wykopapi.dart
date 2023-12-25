@@ -16,6 +16,7 @@ class WykopApi {
   late PMResource pm;
   late MicroblogResource microblog;
   late MediaResource media;
+  late FavouritesResource favourites;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -31,5 +32,6 @@ class WykopApi {
     pm = PMResource(apiProperties);
     microblog = MicroblogResource(apiProperties);
     media = MediaResource(apiProperties);
+    favourites = FavouritesResource(apiProperties);
   }
 }
