@@ -93,7 +93,7 @@ class ApiRequest {
           break;
 
         case RequestMethod.DELETE:
-          res = await http.delete(uri, headers: headers);
+          res = await http.delete(uri, headers: headers, body: getBodyData());
           break;
 
         case RequestMethod.GET:
