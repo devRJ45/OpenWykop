@@ -10,6 +10,7 @@ class WykopApi {
   late AuthResource auth;
   late UsersResource users;
   late TagsResource tags;
+  late NotificationsResource notifications;
   late ProfilesResource profiles;
   late LinksResource links;
   late MicroblogResource microblog;
@@ -23,6 +24,7 @@ class WykopApi {
     auth = AuthResource(apiProperties);
     users = UsersResource(apiProperties);
     tags = TagsResource(apiProperties);
+    notifications = NotificationsResource(apiProperties);
     profiles = ProfilesResource(apiProperties);
     links = LinksResource(apiProperties);
     microblog = MicroblogResource(apiProperties);
