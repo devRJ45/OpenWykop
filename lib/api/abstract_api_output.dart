@@ -21,7 +21,7 @@ abstract class AbstractApiOutput<T extends ApiModel> {
       return;
     }
 
-    if (apiResponse.json['data'].isEmpty) {
+    if (apiResponse.json['data'] is! bool && apiResponse.json['data'].isEmpty) {
       return;
     }
 
