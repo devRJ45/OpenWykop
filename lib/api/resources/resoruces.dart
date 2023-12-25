@@ -5,5 +5,6 @@ export 'tags.dart';
 export 'notifications.dart';
 export 'profiles.dart';
 export 'links.dart';
+export 'pm.dart';
 export 'microblog.dart';
 export 'media.dart';
