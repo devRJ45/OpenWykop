@@ -19,6 +19,9 @@ Media _$MediaFromJson(Map<String, dynamic> json) => Media(
       json['icon'] == null
           ? null
           : Photo.fromJson(json['icon'] as Map<String, dynamic>),
+      json['background'] == null
+          ? null
+          : Photo.fromJson(json['background'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
@@ -26,4 +29,5 @@ Map<String, dynamic> _$MediaToJson(Media instance) => <String, dynamic>{
       'embed': instance.embed,
       'survey': instance.survey,
       'icon': instance.icon,
+      'background': instance.background,
     };

@@ -4,6 +4,8 @@ export 'auth.dart';
 export 'autocomplete_tag.dart';
 export 'autocomplete_user.dart';
 export 'badge.dart';
+export 'category.dart';
+export 'category_header.dart';
 export 'color.dart';
 export 'comment.dart';
 export 'comment_actions.dart';

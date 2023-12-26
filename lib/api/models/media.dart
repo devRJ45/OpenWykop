@@ -12,12 +12,14 @@ class Media extends ApiModel {
   Embed? embed;
   Survey? survey;
   Photo? icon;
+  Photo? background;
 
   Media(
     this.photo,
     this.embed,
     this.survey,
     this.icon,
+    this.background,
   );
 
   @override

@@ -11,3 +11,4 @@ export 'media.dart';
 export 'favourites.dart';
 export 'notes.dart';
 export 'hits.dart';
+export 'categories.dart';
