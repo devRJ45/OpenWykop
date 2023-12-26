@@ -13,3 +13,4 @@ export 'notes.dart';
 export 'hits.dart';
 export 'categories.dart';
 export 'observed.dart';
+export 'buckets.dart';

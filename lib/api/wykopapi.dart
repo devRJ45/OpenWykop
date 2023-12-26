@@ -21,6 +21,7 @@ class WykopApi {
   late HitsResource hits;
   late CategoriesResource categories;
   late ObservedResource observed;
+  late BucketsResource buckets;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -41,5 +42,6 @@ class WykopApi {
     hits = HitsResource(apiProperties);
     categories = CategoriesResource(apiProperties);
     observed = ObservedResource(apiProperties);
+    buckets = BucketsResource(apiProperties);
   }
 }
