@@ -15,3 +15,4 @@ export 'categories.dart';
 export 'observed.dart';
 export 'buckets.dart';
 export 'badges.dart';
+export 'rank.dart';
