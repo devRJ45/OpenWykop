@@ -4,6 +4,7 @@ export 'auth.dart';
 export 'autocomplete_tag.dart';
 export 'autocomplete_user.dart';
 export 'badge.dart';
+export 'badges_list.dart';
 export 'bucket.dart';
 export 'bucket_search_output.dart';
 export 'bucket_status.dart';
