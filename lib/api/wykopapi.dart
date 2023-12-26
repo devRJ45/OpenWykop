@@ -19,6 +19,7 @@ class WykopApi {
   late FavouritesResource favourites;
   late NotesResource notes;
   late HitsResource hits;
+  late SearchResource search;
   late CategoriesResource categories;
   late ObservedResource observed;
   late BucketsResource buckets;
@@ -42,6 +43,7 @@ class WykopApi {
     favourites = FavouritesResource(apiProperties);
     notes = NotesResource(apiProperties);
     hits = HitsResource(apiProperties);
+    search = SearchResource(apiProperties);
     categories = CategoriesResource(apiProperties);
     observed = ObservedResource(apiProperties);
     buckets = BucketsResource(apiProperties);

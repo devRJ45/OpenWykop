@@ -11,6 +11,7 @@ export 'media.dart';
 export 'favourites.dart';
 export 'notes.dart';
 export 'hits.dart';
+export 'search.dart';
 export 'categories.dart';
 export 'observed.dart';
 export 'buckets.dart';
