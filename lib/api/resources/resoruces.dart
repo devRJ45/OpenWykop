@@ -12,3 +12,4 @@ export 'favourites.dart';
 export 'notes.dart';
 export 'hits.dart';
 export 'categories.dart';
+export 'observed.dart';

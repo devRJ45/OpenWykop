@@ -20,6 +20,7 @@ class WykopApi {
   late NotesResource notes;
   late HitsResource hits;
   late CategoriesResource categories;
+  late ObservedResource observed;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -39,5 +40,6 @@ class WykopApi {
     notes = NotesResource(apiProperties);
     hits = HitsResource(apiProperties);
     categories = CategoriesResource(apiProperties);
+    observed = ObservedResource(apiProperties);
   }
 }
