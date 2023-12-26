@@ -12,6 +12,7 @@ class WykopApi {
   late TagsResource tags;
   late NotificationsResource notifications;
   late ProfilesResource profiles;
+  late SettingsResource settings;
   late LinksResource links;
   late PMResource pm;
   late MicroblogResource microblog;
@@ -36,6 +37,7 @@ class WykopApi {
     tags = TagsResource(apiProperties);
     notifications = NotificationsResource(apiProperties);
     profiles = ProfilesResource(apiProperties);
+    settings = SettingsResource(apiProperties);
     links = LinksResource(apiProperties);
     pm = PMResource(apiProperties);
     microblog = MicroblogResource(apiProperties);

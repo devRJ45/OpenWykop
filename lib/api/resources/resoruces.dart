@@ -4,6 +4,7 @@ export 'users.dart';
 export 'tags.dart';
 export 'notifications.dart';
 export 'profiles.dart';
+export 'settings.dart';
 export 'links.dart';
 export 'pm.dart';
 export 'microblog.dart';
