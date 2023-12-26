@@ -10,3 +10,4 @@ export 'microblog.dart';
 export 'media.dart';
 export 'favourites.dart';
 export 'notes.dart';
+export 'hits.dart';

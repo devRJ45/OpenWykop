@@ -18,6 +18,7 @@ class WykopApi {
   late MediaResource media;
   late FavouritesResource favourites;
   late NotesResource notes;
+  late HitsResource hits;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -35,5 +36,6 @@ class WykopApi {
     media = MediaResource(apiProperties);
     favourites = FavouritesResource(apiProperties);
     notes = NotesResource(apiProperties);
+    hits = HitsResource(apiProperties);
   }
 }
