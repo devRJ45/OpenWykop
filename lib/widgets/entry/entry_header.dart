@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
 
@@ -45,9 +46,20 @@ class EntryHeader extends StatelessWidget {
         SizedBox(
           width: avatarSize,
           height: avatarSize,
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(avatar),
-          ),
+          child: CachedNetworkImage(
+            imageUrl: avatar,
+            imageBuilder: (context, imageProvider) => Container(
+              width: avatarSize,
+              height: avatarSize,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: imageProvider, fit: BoxFit.cover),
+              ),
+            ),
+            placeholder: (context, url) => Opacity(opacity: 0.5, child: Icon(Icons.account_circle_outlined, size: avatarSize)),
+            errorWidget: (context, url, error) => Icon(Icons.account_circle_outlined, size: avatarSize),
+          )
         ),
         Expanded(
           child: Padding(
