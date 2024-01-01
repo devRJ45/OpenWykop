@@ -1,13 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
 
 class EntryActions extends StatelessWidget {
 
-  api_models.Entry? entryData;
-  VoidCallback? onTapVoteButton;
-  VoidCallback? onTapCommentsButton;
-  VoidCallback? onTapFavoriteButton;
+  final api_models.Entry? entryData;
+  final VoidCallback? onTapVoteButton;
+  final VoidCallback? onTapCommentsButton;
+  final VoidCallback? onTapFavoriteButton;
 
   EntryActions({
     super.key,

@@ -3,9 +3,9 @@ import 'package:openwykop/api/models/models.dart' as api_models;
 
 class EntryHeader extends StatelessWidget {
 
-  api_models.ProfileShort? userData;
-  String? timeago;
-  VoidCallback? onTapMoreButton;
+  final api_models.ProfileShort? userData;
+  final String? timeago;
+  final VoidCallback? onTapMoreButton;
 
   EntryHeader({
     super.key,
