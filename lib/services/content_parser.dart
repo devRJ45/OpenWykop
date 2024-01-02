@@ -15,6 +15,8 @@ class ContentParser {
     PatternItalic(),
     PatternBold(),
     PatternLink(),
+    PatternUsername(),
+    PatternTag(),
   ];
 
   static TextSegment _parseSegment (TextSegment segment, {List<String>? segmentParentStyles}) {
@@ -363,6 +365,56 @@ class PatternLink extends IPattern {
     end += 1;
 
     String value = content.substring(start+1, middle);
+    String rawValue = content.substring(start, end);
+
+    return PatternMatch(name, start, end, value, rawValue);
+  }
+
+}
+
+class PatternUsername extends IPattern {
+  
+  PatternUsername() : super('username');
+
+  RegExp usernameRegExp = RegExp(r'(^| )@([\w\d\-]*)', multiLine: true);
+
+  @override
+  PatternMatch? findFirst(String content) {
+    RegExpMatch? match = usernameRegExp.firstMatch(content);
+
+    if (match == null) {
+      return null;
+    }
+
+    int start = match.start + match.group(1)!.length;
+    int end = match.end;
+
+    String value = match.group(2)!;
+    String rawValue = content.substring(start, end);
+
+    return PatternMatch(name, start, end, value, rawValue);
+  }
+
+}
+
+class PatternTag extends IPattern {
+  
+  PatternTag() : super('tag');
+
+  RegExp usernameRegExp = RegExp(r'(^| )#([a-zA-Z\d]*)', multiLine: true);
+
+  @override
+  PatternMatch? findFirst(String content) {
+    RegExpMatch? match = usernameRegExp.firstMatch(content);
+
+    if (match == null) {
+      return null;
+    }
+
+    int start = match.start + match.group(1)!.length;
+    int end = match.end;
+
+    String value = match.group(2)!;
     String rawValue = content.substring(start, end);
 
     return PatternMatch(name, start, end, value, rawValue);
