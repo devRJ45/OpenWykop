@@ -38,6 +38,7 @@ dependencies:
   json_annotation: ^4.8.1
   http: ^0.13.4
   image_picker: ^1.0.5
+  cached_network_image: ^3.3.1
   path:
 
 dev_dependencies:
