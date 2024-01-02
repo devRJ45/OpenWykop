@@ -17,7 +17,7 @@ class ContentParser {
     PatternLink(),
   ];
 
-  static TextSegment _parseSegment (TextSegment segment) {
+  static TextSegment _parseSegment (TextSegment segment, {List<String>? segmentParentStyles}) {
 
     String originalType = segment.type;
     List<TextSegment> childrens = [];
@@ -46,39 +46,47 @@ class ContentParser {
         if (bestMatch == null) {
           
           if (childrens.isEmpty) {
-            return TextSegment(type: originalType, text: segment.text!, endParsing: true);
+            return TextSegment(type: originalType, text: segment.text!, endParsing: true, parentStyles: segmentParentStyles);
           }
 
           if (segment.text!.isNotEmpty) {
-            childrens.add(TextSegment(type: originalType, text: segment.text!));
+            childrens.add(TextSegment(type: originalType, text: segment.text!, parentStyles: segmentParentStyles));
           }
 
           segment.text = null;
           segment.children = childrens;
 
-          return _parseSegment(segment);
+          return _parseSegment(segment, segmentParentStyles: segmentParentStyles);
         }
 
         if (bestMatch.start > 0) {
-          childrens.add(TextSegment(type: originalType, text: segment.text!.substring(0, bestMatch.start)));
+          childrens.add(TextSegment(type: originalType, text: segment.text!.substring(0, bestMatch.start), parentStyles: segmentParentStyles));
         }
+
+        List<String>? parentStyles;
+        if (segmentParentStyles != null) {
+          parentStyles = [...segmentParentStyles];
+        }
+        parentStyles ??= [];
+        parentStyles.add(bestMatch.patternName);
 
         if (bestMatch.placeInSubBlock != null) {
           childrens.add(TextSegment(
             type: bestMatch.patternName,
+            parentStyles: parentStyles,
             children: [
-              TextSegment(type: bestMatch.placeInSubBlock!, text: bestMatch.value, rawValue: bestMatch.rawValue, endParsing: bestMatch.forceEndParsing)
+              TextSegment(type: bestMatch.placeInSubBlock!, text: bestMatch.value, rawValue: bestMatch.rawValue, endParsing: bestMatch.forceEndParsing, parentStyles: parentStyles)
             ]
           ));
         } else {
-          childrens.add(TextSegment(type: bestMatch.patternName, text: bestMatch.value, rawValue: bestMatch.rawValue, endParsing: bestMatch.forceEndParsing));
+          childrens.add(TextSegment(type: bestMatch.patternName, text: bestMatch.value, rawValue: bestMatch.rawValue, endParsing: bestMatch.forceEndParsing, parentStyles: parentStyles));
         }
 
         segment.text = segment.text!.substring(bestMatch.end, segment.text!.length);
       }
     } else if (segment.children != null) {
       segment.children = segment.children!.map((seg) {
-        return _parseSegment(seg);
+        return _parseSegment(seg, segmentParentStyles: seg.parentStyles);
       }).toList();
     }
 
@@ -92,6 +100,7 @@ class TextSegment {
   String? rawValue;
   List<TextSegment>? children;
   bool endParsing;
+  List<String>? parentStyles;
 
   TextSegment({
     this.type = 'normal',
@@ -99,6 +108,7 @@ class TextSegment {
     this.rawValue,
     this.children,
     this.endParsing = false,
+    this.parentStyles
   });
 
 }
@@ -161,7 +171,7 @@ class PatternCodeBlock extends IPattern {
     String value = content.substring(start+1, end-1);
     String rawValue = content.substring(start, end);
 
-    return PatternMatch(name, start, end, value, rawValue, forceEndParsing: true);
+    return PatternMatch(name, start, end, value, rawValue, forceEndParsing: true, placeInSubBlock: 'codeblock-text');
   }
 
 }
