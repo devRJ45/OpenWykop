@@ -8,7 +8,7 @@ class EntryActions extends StatelessWidget {
   final VoidCallback? onTapCommentsButton;
   final VoidCallback? onTapFavoriteButton;
 
-  EntryActions({
+  const EntryActions({
     super.key,
     this.entryData,
     this.onTapVoteButton,
@@ -33,20 +33,23 @@ class EntryActions extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: InkWell(
               onTap: () {if(onTapFavoriteButton == null) return; onTapFavoriteButton!();},
-              child: isFavourite ? const Icon(Icons.star) : const Icon(Icons.star_border)
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                child: isFavourite ? const Icon(Icons.star) : const Icon(Icons.star_border)
+              )
             )
           ), 
         ),
         InkWell(
           onTap: () {if(onTapCommentsButton == null) return; onTapCommentsButton!();},
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 1,
+              spacing: 8,
               children: [
-                const Icon(Icons.forum_outlined),
-                Text(commentsCount.toString(), style: Theme.of(context).textTheme.labelMedium)
+                const Icon(Icons.forum_outlined, weight: 1,),
+                Text(commentsCount.toString(), style: Theme.of(context).textTheme.labelLarge)
               ],
             ),
           )
@@ -54,13 +57,13 @@ class EntryActions extends StatelessWidget {
         InkWell(
           onTap: () {if(onTapVoteButton == null) return; onTapVoteButton!();},
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Wrap(
               crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 1,
+              spacing: 8,
               children: [
                 isVoted ? const Icon(Icons.add_box) : const Icon(Icons.add_box_outlined),
-                Text(votesCount.toString(), style: Theme.of(context).textTheme.labelMedium)
+                Text(votesCount.toString(), style: Theme.of(context).textTheme.labelLarge)
               ],
             ),
           )
