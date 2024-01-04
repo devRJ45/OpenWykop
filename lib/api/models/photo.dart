@@ -27,6 +27,20 @@ class Photo extends ApiModel {
     this.height,
   );
 
+  String? getThumbnailUrl () {
+    if (url == null) {
+      return null;
+    }
+
+    int extensionPosition = url!.lastIndexOf('.');
+    
+    if (extensionPosition < 0) {
+      return null;
+    }
+
+    return '${url!.substring(0, extensionPosition)},w800${url!.substring(extensionPosition)}';
+  }
+
   @override
   factory  Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
   @override
