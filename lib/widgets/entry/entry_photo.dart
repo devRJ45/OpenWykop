@@ -8,7 +8,7 @@ class EntryPhoto extends StatefulWidget  {
   final VoidCallback? onTapPhoto;
   final VoidCallback? onLongPressPhoto;
 
-  final double ellapsedAspectRatio = 16/9;
+  final double maxAspectRatioWithoutEllapsed = 10/8;
   
   const EntryPhoto({
     super.key,
@@ -21,7 +21,7 @@ class EntryPhoto extends StatefulWidget  {
   State<EntryPhoto> createState() => _EntryPhotoState();
 }
 
-class _EntryPhotoState extends State<EntryPhoto> {
+class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMixin {
 
   double originalAspectRatio = 1;
   bool isEllapsed = true;
@@ -30,7 +30,7 @@ class _EntryPhotoState extends State<EntryPhoto> {
   void initState() {
     super.initState();
     originalAspectRatio = (widget.photoData?.width ?? 1)/(widget.photoData?.height ?? 1);
-    isEllapsed = originalAspectRatio < widget.ellapsedAspectRatio;
+    isEllapsed = originalAspectRatio < widget.maxAspectRatioWithoutEllapsed;
   }
 
   void _onTapImage () {
@@ -56,6 +56,7 @@ class _EntryPhotoState extends State<EntryPhoto> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
 
     if (widget.photoData?.width == null || widget.photoData?.height == null) {
       return Container();
@@ -72,7 +73,7 @@ class _EntryPhotoState extends State<EntryPhoto> {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: Theme.of(context).colorScheme.surfaceVariant,
         child: AspectRatio(
-          aspectRatio: isEllapsed ? widget.ellapsedAspectRatio : originalAspectRatio,
+          aspectRatio: isEllapsed ? widget.maxAspectRatioWithoutEllapsed : originalAspectRatio,
           child: Stack(
             children: [
               CachedNetworkImage(
@@ -88,7 +89,7 @@ class _EntryPhotoState extends State<EntryPhoto> {
                 ),
                 placeholder: (context, url) => Container(
                   alignment: Alignment.center,
-                  child: const CircularProgressIndicator()
+                  child: const Icon(Icons.image_outlined)
                 ),
                 errorWidget: (context, url, error) => Container(
                   alignment: Alignment.center,
@@ -120,4 +121,7 @@ class _EntryPhotoState extends State<EntryPhoto> {
       ),
     );
   }
+  
+  @override
+  bool get wantKeepAlive => true;
 }
