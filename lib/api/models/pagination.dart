@@ -15,10 +15,10 @@ class Pagination extends ApiModel {
   String? prev;
 
   Pagination(
-    perPage,
-    total,
-    next,
-    prev
+    this.perPage,
+    this.total,
+    this.next,
+    this.prev
   );
 
   @override
