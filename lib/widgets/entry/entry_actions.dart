@@ -62,7 +62,7 @@ class EntryActions extends StatelessWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               spacing: 8,
               children: [
-                isVoted ? const Icon(Icons.add_box) : const Icon(Icons.add_box_outlined),
+                isVoted ? const Icon(Icons.add_box, color: Color(0xff71be71)) : const Icon(Icons.add_box_outlined),
                 Text(votesCount.toString(), style: Theme.of(context).textTheme.labelLarge)
               ],
             ),
