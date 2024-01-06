@@ -23,7 +23,10 @@ class _EntrySurveyState extends State<EntrySurvey> {
   Widget _getAnswerWidget (api_models.SurveyAnswer answer) {
 
     String text = answer.text ?? '';
-    int precentage = ((answer.count ?? 1)/(widget.surveyData?.count ?? 1) * 100).toInt();
+    int precentage = 0;
+    if (widget.surveyData?.count != 0) {
+      precentage = ((answer.count ?? 1)/(widget.surveyData?.count ?? 1) * 100).toInt();
+    }
     bool isVoted = answer.voted == 1;
 
     return Container(
