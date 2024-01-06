@@ -149,8 +149,8 @@ class PatternCodeBlock extends IPattern {
   
   PatternCodeBlock() : super('codeblock');
 
-  RegExp startRegExp = RegExp(r'^\`', multiLine: true);
-  RegExp endRegExp = RegExp(r'\`$', multiLine: true);
+  RegExp startRegExp = RegExp(r'^\`(\n?)', multiLine: true);
+  RegExp endRegExp = RegExp(r'(\n)?\`$', multiLine: true);
 
   @override
   PatternMatch? findFirst(String content) {
@@ -160,20 +160,19 @@ class PatternCodeBlock extends IPattern {
       return null;
     }
 
-    int start = startMatch.start;
-
-    RegExpMatch? endMatch = endRegExp.firstMatch(content.substring(start));
+    RegExpMatch? endMatch = endRegExp.firstMatch(content.substring(startMatch.end));
 
     if (endMatch == null) {
       return null;
     }
 
-    int end = endMatch.end + start;
+    int rawStart = startMatch.start;
+    int rawEnd = endMatch.end + startMatch.end;
 
-    String value = content.substring(start+1, end-1);
-    String rawValue = content.substring(start, end);
+    String value = content.substring(startMatch.end, endMatch.start+startMatch.end);
+    String rawValue = content.substring(rawStart, rawEnd);
 
-    return PatternMatch(name, start, end, value, rawValue, forceEndParsing: true, placeInSubBlock: 'codeblock-text');
+    return PatternMatch(name, rawStart, rawEnd, value, rawValue, forceEndParsing: true, placeInSubBlock: 'codeblock-text');
   }
 
 }
