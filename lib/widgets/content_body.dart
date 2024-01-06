@@ -33,32 +33,27 @@ class _ContentBodyState extends State<ContentBody> {
         case 'italic':
           style = style!.copyWith(fontStyle: FontStyle.italic);
           continue;
+        case 'link':
+          style = style!.copyWith(color: Theme.of(context).colorScheme.primary);
+          continue;
+        case 'code':
+          style = style!.copyWith(backgroundColor: Theme.of(context).colorScheme.surfaceVariant, color: Theme.of(context).colorScheme.onSurfaceVariant, fontFamily: 'monospace');
+          continue;
+        case 'username':
+          style = style!.copyWith(color: Theme.of(context).colorScheme.primary);
+          continue;
+        case 'tag':
+          style = style!.copyWith(color: Theme.of(context).colorScheme.primary);
+          continue;
       }
     }
 
     return style!;
   }
 
-   TextStyle? _getTextStyleByName (String styleName) {
-    switch (styleName) {
-      case 'bold':
-        return const TextStyle(fontWeight: FontWeight.bold);
-      case 'italic':
-        return const TextStyle(fontStyle: FontStyle.italic);
-      case 'link':
-        return TextStyle(color: Theme.of(context).colorScheme.primary);
-      case 'code':
-        return TextStyle(backgroundColor: Theme.of(context).colorScheme.surfaceVariant, color: Theme.of(context).colorScheme.onSurfaceVariant, fontFamily: 'monospace');
-      case 'username':
-        return const TextStyle(color: Colors.green);
-      case 'tag':
-        return const TextStyle(color: Colors.amber);
-      default:
-        return DefaultTextStyle.of(context).style;
-    }
-  }
+  InlineSpan _buildTextWidget (BuildContext context, TextSegment segment, TextStyle parentStyle) {
+    TextStyle segmentStyle = _combineStyleWithParentStyles(parentStyle, segment.parentStyles);
 
-  InlineSpan _buildTextWidget (BuildContext context, TextSegment segment) {
     switch (segment.type) {
       case 'bold':
       case 'italic':
@@ -67,31 +62,33 @@ class _ContentBodyState extends State<ContentBody> {
       case 'codeblock':
         return TextSpan(
           text: segment.text,
-          style: _getTextStyleByName(segment.type)
+          style: segmentStyle
         );
         
       case 'username':
         return TextSpan(
+          style: segmentStyle,
           children: [
-            const TextSpan(
-              text: '@'
+            TextSpan(
+              text: '@',
+              style: segmentStyle.copyWith(color: parentStyle.color)
             ),
             TextSpan(
               text: segment.text,
-              style:TextStyle(color: Theme.of(context).colorScheme.primary),
             )
           ]
         );
 
       case 'tag':
         return TextSpan(
+          style: segmentStyle,
           children: [
-            const TextSpan(
-              text: '#'
+            TextSpan(
+              text: '#',
+              style: segmentStyle.copyWith(color: parentStyle.color)
             ),
             TextSpan(
               text: segment.text,
-              style: TextStyle(color: Theme.of(context).colorScheme.primary),
             )
           ]
         );
@@ -101,7 +98,7 @@ class _ContentBodyState extends State<ContentBody> {
     );
   }
 
-  InlineSpan _buildWidgetWithChildrens (BuildContext context, TextSegment segment) {
+  InlineSpan _buildWidgetWithChildrens (BuildContext context, TextSegment segment, TextStyle parentStyle) {
     switch (segment.type) {
       case 'codeblock':
         return WidgetSpan(
@@ -117,9 +114,9 @@ class _ContentBodyState extends State<ContentBody> {
               ),
               child: RichText(
                 text: TextSpan(
-                  style: _combineStyleWithParentStyles(Theme.of(context).textTheme.bodyMedium?.copyWith(fontFamily: 'monospace', color: Theme.of(context).colorScheme.onSurfaceVariant), segment.parentStyles),
+                  style: _combineStyleWithParentStyles(parentStyle.copyWith(fontFamily: 'monospace', color: Theme.of(context).colorScheme.onSurfaceVariant), segment.parentStyles),
                   children: segment.children!.map((seg) {
-                    return _buildContent(context, seg);
+                    return _buildContent(context, seg, parentStyle);
                   }).toList(),
                 )
               )
@@ -141,9 +138,9 @@ class _ContentBodyState extends State<ContentBody> {
               ),
               child: RichText(
                 text: TextSpan(
-                  style: _combineStyleWithParentStyles(Theme.of(context).textTheme.bodyMedium?.copyWith(fontStyle: FontStyle.italic), segment.parentStyles),
+                  style: _combineStyleWithParentStyles(parentStyle.copyWith(fontStyle: FontStyle.italic), segment.parentStyles),
                   children: segment.children!.map((seg) {
-                    return _buildContent(context, seg);
+                    return _buildContent(context, seg, parentStyle);
                   }).toList(),
                 )
               )
@@ -158,9 +155,9 @@ class _ContentBodyState extends State<ContentBody> {
             child: TextSpoiler(
               content: RichText(
                 text: TextSpan(
-                  style: _combineStyleWithParentStyles(Theme.of(context).textTheme.bodyMedium?.copyWith(fontFamily: 'monospace'), segment.parentStyles),
+                  style: _combineStyleWithParentStyles(parentStyle.copyWith(fontFamily: 'monospace'), segment.parentStyles),
                   children: segment.children!.map((seg) {
-                    return _buildContent(context, seg);
+                    return _buildContent(context, seg, parentStyle);
                   }).toList(),
                 )
               ),
@@ -172,19 +169,19 @@ class _ContentBodyState extends State<ContentBody> {
 
     return TextSpan(
       children: segment.children!.map((seg) {
-        return _buildContent(context, seg);
+        return _buildContent(context, seg, parentStyle);
       }).toList(),
     );
   }
 
-  InlineSpan _buildContent (BuildContext context, TextSegment segment) {
+  InlineSpan _buildContent (BuildContext context, TextSegment segment, TextStyle parentStyle) {
     
     if (segment.text != null) {
-      return _buildTextWidget(context, segment);
+      return _buildTextWidget(context, segment, parentStyle);
     }
 
     if (segment.children != null) {
-      return _buildWidgetWithChildrens(context, segment);
+      return _buildWidgetWithChildrens(context, segment, parentStyle);
     }
 
     return const TextSpan();
@@ -197,9 +194,8 @@ class _ContentBodyState extends State<ContentBody> {
 
     return RichText(
       text: TextSpan(
-        style: Theme.of(context).textTheme.bodyMedium,
         children: [
-          _buildContent(context, segment)
+          _buildContent(context, segment, Theme.of(context).textTheme.bodyMedium ?? const TextStyle())
         ]
       )
     );
