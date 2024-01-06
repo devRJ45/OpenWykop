@@ -7,10 +7,10 @@ part of 'pagination.dart';
 // **************************************************************************
 
 Pagination _$PaginationFromJson(Map<String, dynamic> json) => Pagination(
-      json['per_page'],
-      json['total'],
-      json['next'],
-      json['prev'],
+      json['per_page'] as int?,
+      json['total'] as int?,
+      json['next'] as String?,
+      json['prev'] as String?,
     );
 
 Map<String, dynamic> _$PaginationToJson(Pagination instance) =>

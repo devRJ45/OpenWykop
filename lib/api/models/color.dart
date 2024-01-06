@@ -8,11 +8,13 @@ part 'color.g.dart';
 
 class Color extends ApiModel {
 
+  String? name;
   String? hex;
   @JsonKey(name: 'hex_dark')
   String? hexDark;
 
   Color(
+    this.name,
     this.hex,
     this.hexDark,
   );
