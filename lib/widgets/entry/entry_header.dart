@@ -27,6 +27,17 @@ class EntryHeader extends StatelessWidget {
     }
   }
 
+  Color _getGenderColor (String? gender) {
+    switch (gender) {
+      case 'm':
+        return const Color(0xff4383af);
+      case 'f':
+        return const Color(0xffbf48a7);
+      default:
+        return Colors.black;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -34,10 +45,12 @@ class EntryHeader extends StatelessWidget {
     String timeagoText = timeago ?? 'Przed chwilą';
     String avatar = userData?.avatar ?? '';
     String userColor = userData?.color ?? 'orange';
+    bool genderIsSet = userData?.gender == 'm' ||userData?.gender == 'f';
+    Color genderColor = _getGenderColor(userData?.gender);
+
 
     double avatarSize = Theme.of(context).textTheme.headlineLarge?.fontSize ?? 16;
     avatarSize = avatarSize * 1.1;
-
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -46,19 +59,42 @@ class EntryHeader extends StatelessWidget {
         SizedBox(
           width: avatarSize,
           height: avatarSize,
-          child: CachedNetworkImage(
-            imageUrl: avatar,
-            imageBuilder: (context, imageProvider) => Container(
-              width: avatarSize,
-              height: avatarSize,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  image: imageProvider, fit: BoxFit.cover),
+          child: Stack(
+            children: [
+              CachedNetworkImage(
+                imageUrl: avatar,
+                imageBuilder: (context, imageProvider) => Container(
+                  width: avatarSize,
+                  height: avatarSize,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: imageProvider, fit: BoxFit.cover),
+                  ),
+                ),
+                placeholder: (context, url) => Opacity(opacity: 0.5, child: Icon(Icons.account_circle_outlined, size: avatarSize)),
+                errorWidget: (context, url, error) => Icon(Icons.account_circle_outlined, size: avatarSize),
               ),
-            ),
-            placeholder: (context, url) => Opacity(opacity: 0.5, child: Icon(Icons.account_circle_outlined, size: avatarSize)),
-            errorWidget: (context, url, error) => Icon(Icons.account_circle_outlined, size: avatarSize),
+              Visibility(
+                visible: genderIsSet,
+                child: Positioned(
+                  bottom: -2,
+                  right: -2,
+                  child: Container(
+                    width: avatarSize * 0.4,
+                    height: avatarSize * 0.4,
+                    decoration: BoxDecoration(
+                      color: genderColor,
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.background,
+                        width: 2,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                  )
+                ) 
+              )
+            ],
           )
         ),
         Expanded(
