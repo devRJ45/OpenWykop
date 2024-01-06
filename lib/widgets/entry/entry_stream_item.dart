@@ -19,6 +19,9 @@ class EntryStreamItem extends StatelessWidget {
     bool haveEmbed = entryData.media?.embed != null;
     bool haveSurvey = entryData.media?.survey != null;
 
+    bool isOnlyForAdult = entryData.adult ?? false;
+    bool isNSFW = (entryData.content ?? '').contains('#nsfw');
+
     if (haveContent) {
       widgets.add(Container(
         alignment: Alignment.topLeft,
@@ -27,7 +30,7 @@ class EntryStreamItem extends StatelessWidget {
     }
 
     if (havePhoto) {
-      widgets.add(EntryPhoto(photoData: entryData.media!.photo));
+      widgets.add(EntryPhoto(photoData: entryData.media!.photo, isOnlyForAdult: isOnlyForAdult, isNSFW: isNSFW));
     }
 
     if (haveEmbed) {

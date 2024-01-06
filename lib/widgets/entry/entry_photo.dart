@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
@@ -5,6 +7,8 @@ import 'package:openwykop/api/models/models.dart' as api_models;
 class EntryPhoto extends StatefulWidget  {
   
   final api_models.Photo? photoData;
+  final bool isOnlyForAdult;
+  final bool isNSFW;
   final VoidCallback? onTapPhoto;
   final VoidCallback? onLongPressPhoto;
 
@@ -13,6 +17,8 @@ class EntryPhoto extends StatefulWidget  {
   const EntryPhoto({
     super.key,
     this.photoData,
+    this.isOnlyForAdult = false,
+    this.isNSFW = false,
     this.onTapPhoto,
     this.onLongPressPhoto,
   });
@@ -25,15 +31,35 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
 
   double originalAspectRatio = 1;
   bool isEllapsed = true;
+  bool pausedGif = false;
+  bool hideAdult = true;
+  String imageUrl = '';
 
   @override
   void initState() {
     super.initState();
     originalAspectRatio = (widget.photoData?.width ?? 1)/(widget.photoData?.height ?? 1);
     isEllapsed = originalAspectRatio < widget.maxAspectRatioWithoutEllapsed;
+    pausedGif = widget.photoData?.url?.contains('.gif') ?? false;
+    hideAdult = true;
+    imageUrl = widget.photoData?.getThumbnailUrl() ?? '';
   }
 
   void _onTapImage () {
+    if ((widget.isOnlyForAdult || widget.isNSFW) && hideAdult) {
+      setState(() {
+        hideAdult = false;
+      });
+      return;
+    }
+
+    if (pausedGif) {
+      setState(() {
+        pausedGif = false;
+        imageUrl = widget.photoData?.url ?? '';
+      });
+    }
+
     if (isEllapsed) {
       setState(() {
         isEllapsed = false;
@@ -62,8 +88,6 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
       return Container();
     }
 
-    String photoUrl = widget.photoData?.getThumbnailUrl() ?? '';
-
     return GestureDetector(
       onTap: _onTapImage,
       onLongPress: _onLongPressImage,
@@ -77,7 +101,7 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
           child: Stack(
             children: [
               CachedNetworkImage(
-                imageUrl: photoUrl,
+                imageUrl: imageUrl,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -114,7 +138,50 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
                     )
                   )
                 ),
-              )
+              ),
+              if (pausedGif)
+                Positioned.fill(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Card(
+                      color: Theme.of(context).colorScheme.primary,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Icon(Icons.gif, color: Theme.of(context).colorScheme.onPrimary),
+                      )
+                    )
+                  )
+                ),
+              if ((widget.isOnlyForAdult || widget.isNSFW) && hideAdult)
+                Positioned.fill(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 25,
+                      sigmaY: 25
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Card(
+                        color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Wrap(
+                            direction: Axis.vertical,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              const Icon(Icons.remove_red_eye_outlined),
+                              if (widget.isOnlyForAdult)
+                                Text('+18', style: Theme.of(context).textTheme.labelMedium),
+                              if (!widget.isOnlyForAdult && widget.isNSFW)
+                                Text('#nsfw', style: Theme.of(context).textTheme.labelMedium),
+                            ],
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
             ]
           ),
         )
