@@ -15,7 +15,7 @@ class TagInfo extends ApiModel {
   );
 
   @override
-  factory  TagInfo.fromJson(Map<String, dynamic> json) => _$TagInfoFromJson(json);
+  factory TagInfo.fromJson(Map<String, dynamic> json) => _$TagInfoFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$TagInfoToJson(this);
 

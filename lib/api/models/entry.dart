@@ -54,7 +54,7 @@ class Entry extends StreamItem {
   );
 
   @override
-  factory  Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
+  factory Entry.fromJson(Map<String, dynamic> json) => _$EntryFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$EntryToJson(this);
 

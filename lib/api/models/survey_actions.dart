@@ -21,7 +21,7 @@ class SurveyActions extends ApiModel {
   );
 
   @override
-  factory  SurveyActions.fromJson(Map<String, dynamic> json) => _$SurveyActionsFromJson(json);
+  factory SurveyActions.fromJson(Map<String, dynamic> json) => _$SurveyActionsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$SurveyActionsToJson(this);
 

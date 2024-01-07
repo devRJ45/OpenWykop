@@ -18,7 +18,7 @@ class AutocompleteTag extends ApiModel {
   );
 
   @override
-  factory  AutocompleteTag.fromJson(Map<String, dynamic> json) => _$AutocompleteTagFromJson(json);
+  factory AutocompleteTag.fromJson(Map<String, dynamic> json) => _$AutocompleteTagFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$AutocompleteTagToJson(this);
 

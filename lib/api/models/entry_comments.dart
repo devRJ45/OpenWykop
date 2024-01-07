@@ -17,7 +17,7 @@ class EntryComments extends ApiModel {
   );
 
   @override
-  factory  EntryComments.fromJson(Map<String, dynamic> json) => _$EntryCommentsFromJson(json);
+  factory EntryComments.fromJson(Map<String, dynamic> json) => _$EntryCommentsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$EntryCommentsToJson(this);
 

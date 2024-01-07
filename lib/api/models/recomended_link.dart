@@ -24,7 +24,7 @@ class RecomendedLink extends StreamItem {
   );
 
   @override
-  factory  RecomendedLink.fromJson(Map<String, dynamic> json) => _$RecomendedLinkFromJson(json);
+  factory RecomendedLink.fromJson(Map<String, dynamic> json) => _$RecomendedLinkFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$RecomendedLinkToJson(this);
 

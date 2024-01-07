@@ -42,7 +42,7 @@ class Photo extends ApiModel {
   }
 
   @override
-  factory  Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
+  factory Photo.fromJson(Map<String, dynamic> json) => _$PhotoFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$PhotoToJson(this);
 

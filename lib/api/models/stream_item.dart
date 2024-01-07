@@ -15,7 +15,7 @@ class StreamItem extends ApiModel {
   );
 
   @override
-  factory  StreamItem.fromJson(Map<String, dynamic> json) => _$StreamItemFromJson(json);
+  factory StreamItem.fromJson(Map<String, dynamic> json) => _$StreamItemFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$StreamItemToJson(this);
 

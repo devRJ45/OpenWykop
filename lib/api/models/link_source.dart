@@ -22,7 +22,7 @@ class LinkSource extends ApiModel {
   );
 
   @override
-  factory  LinkSource.fromJson(Map<String, dynamic> json) => _$LinkSourceFromJson(json);
+  factory LinkSource.fromJson(Map<String, dynamic> json) => _$LinkSourceFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$LinkSourceToJson(this);
 

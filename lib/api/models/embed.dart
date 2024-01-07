@@ -21,7 +21,7 @@ class Embed extends ApiModel {
   );
 
   @override
-  factory  Embed.fromJson(Map<String, dynamic> json) => _$EmbedFromJson(json);
+  factory Embed.fromJson(Map<String, dynamic> json) => _$EmbedFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$EmbedToJson(this);
 

@@ -17,7 +17,7 @@ class ProfileRank extends ApiModel {
   );
 
   @override
-  factory  ProfileRank.fromJson(Map<String, dynamic> json) => _$ProfileRankFromJson(json);
+  factory ProfileRank.fromJson(Map<String, dynamic> json) => _$ProfileRankFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$ProfileRankToJson(this);
 

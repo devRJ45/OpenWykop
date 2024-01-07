@@ -41,7 +41,7 @@ class Tag extends ApiModel {
   );
 
   @override
-  factory  Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
+  factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$TagToJson(this);
 

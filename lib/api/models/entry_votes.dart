@@ -19,7 +19,7 @@ class EntryVotes extends ApiModel {
   );
 
   @override
-  factory  EntryVotes.fromJson(Map<String, dynamic> json) => _$EntryVotesFromJson(json);
+  factory EntryVotes.fromJson(Map<String, dynamic> json) => _$EntryVotesFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$EntryVotesToJson(this);
 

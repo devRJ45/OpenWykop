@@ -39,7 +39,7 @@ class LinkActions extends ApiModel {
   );
 
   @override
-  factory  LinkActions.fromJson(Map<String, dynamic> json) => _$LinkActionsFromJson(json);
+  factory LinkActions.fromJson(Map<String, dynamic> json) => _$LinkActionsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$LinkActionsToJson(this);
 

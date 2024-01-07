@@ -36,7 +36,7 @@ class ProfileShort extends ApiModel {
   );
 
   @override
-  factory  ProfileShort.fromJson(Map<String, dynamic> json) => _$ProfileShortFromJson(json);
+  factory ProfileShort.fromJson(Map<String, dynamic> json) => _$ProfileShortFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$ProfileShortToJson(this);
 

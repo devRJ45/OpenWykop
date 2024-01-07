@@ -28,7 +28,7 @@ class EntryActions extends ApiModel {
   );
 
   @override
-  factory  EntryActions.fromJson(Map<String, dynamic> json) => _$EntryActionsFromJson(json);
+  factory EntryActions.fromJson(Map<String, dynamic> json) => _$EntryActionsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$EntryActionsToJson(this);
 

@@ -53,7 +53,7 @@ class Comment extends StreamItem {
   );
 
   @override
-  factory  Comment.fromJson(Map<String, dynamic> json) => _$CommentFromJson(json);
+  factory Comment.fromJson(Map<String, dynamic> json) => _$CommentFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$CommentToJson(this);
 

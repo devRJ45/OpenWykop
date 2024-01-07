@@ -19,7 +19,7 @@ class LinkVotes extends ApiModel {
   );
 
   @override
-  factory  LinkVotes.fromJson(Map<String, dynamic> json) => _$LinkVotesFromJson(json);
+  factory LinkVotes.fromJson(Map<String, dynamic> json) => _$LinkVotesFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$LinkVotesToJson(this);
 

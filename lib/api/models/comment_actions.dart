@@ -29,7 +29,7 @@ class CommentActions extends ApiModel {
   );
 
   @override
-  factory  CommentActions.fromJson(Map<String, dynamic> json) => _$CommentActionsFromJson(json);
+  factory CommentActions.fromJson(Map<String, dynamic> json) => _$CommentActionsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$CommentActionsToJson(this);
 

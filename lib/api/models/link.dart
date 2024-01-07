@@ -62,7 +62,7 @@ class Link extends StreamItem {
   );
 
   @override
-  factory  Link.fromJson(Map<String, dynamic> json) => _$LinkFromJson(json);
+  factory Link.fromJson(Map<String, dynamic> json) => _$LinkFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$LinkToJson(this);
 

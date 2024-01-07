@@ -25,7 +25,7 @@ class ProfileActions extends ApiModel {
   );
 
   @override
-  factory  ProfileActions.fromJson(Map<String, dynamic> json) => _$ProfileActionsFromJson(json);
+  factory ProfileActions.fromJson(Map<String, dynamic> json) => _$ProfileActionsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$ProfileActionsToJson(this);
 

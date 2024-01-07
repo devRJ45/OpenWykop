@@ -17,7 +17,7 @@ class LinkComments extends ApiModel {
   );
 
   @override
-  factory  LinkComments.fromJson(Map<String, dynamic> json) => _$LinkCommentsFromJson(json);
+  factory LinkComments.fromJson(Map<String, dynamic> json) => _$LinkCommentsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$LinkCommentsToJson(this);
 

@@ -25,7 +25,7 @@ class TagActions extends ApiModel {
   );
 
   @override
-  factory  TagActions.fromJson(Map<String, dynamic> json) => _$TagActionsFromJson(json);
+  factory TagActions.fromJson(Map<String, dynamic> json) => _$TagActionsFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$TagActionsToJson(this);
 

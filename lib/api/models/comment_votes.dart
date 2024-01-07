@@ -19,7 +19,7 @@ class CommentVotes extends ApiModel {
   );
 
   @override
-  factory  CommentVotes.fromJson(Map<String, dynamic> json) => _$CommentVotesFromJson(json);
+  factory CommentVotes.fromJson(Map<String, dynamic> json) => _$CommentVotesFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$CommentVotesToJson(this);
 

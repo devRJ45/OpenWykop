@@ -17,7 +17,7 @@ class ParentLocation extends ApiModel {
   );
 
   @override
-  factory  ParentLocation.fromJson(Map<String, dynamic> json) => _$ParentLocationFromJson(json);
+  factory ParentLocation.fromJson(Map<String, dynamic> json) => _$ParentLocationFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$ParentLocationToJson(this);
 

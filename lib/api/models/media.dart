@@ -23,7 +23,7 @@ class Media extends ApiModel {
   );
 
   @override
-  factory  Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
+  factory Media.fromJson(Map<String, dynamic> json) => _$MediaFromJson(json);
   @override
   Map<String, dynamic> toJson() => _$MediaToJson(this);
 
