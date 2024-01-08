@@ -15,6 +15,7 @@ class ContentParser {
     PatternItalic(),
     PatternBold(),
     PatternLink(),
+    PatternRawLink(),
     PatternUsername(),
     PatternTag(),
   ];
@@ -367,6 +368,30 @@ class PatternLink extends IPattern {
     String rawValue = content.substring(start, end);
 
     return PatternMatch(name, start, end, value, rawValue);
+  }
+
+}
+
+class PatternRawLink extends IPattern {
+  
+  PatternRawLink() : super('link');
+
+  RegExp linkRegExp = RegExp(r'(https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*))', multiLine: true);
+
+  @override
+  PatternMatch? findFirst(String content) {
+    RegExpMatch? match = linkRegExp.firstMatch(content);
+
+    if (match == null) {
+      return null;
+    }
+
+    int start = match.start;
+    int end = match.end;
+
+    String rawValue = content.substring(start, end);
+
+    return PatternMatch(name, start, end, rawValue, rawValue, forceEndParsing: true);
   }
 
 }
