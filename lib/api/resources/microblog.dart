@@ -18,7 +18,7 @@ class MicroblogResource extends ApiResource {
     if (category != null) queryParameters['category'] = category;
     if (bucket != null) queryParameters['bucket'] = bucket;
     if (sort != null) queryParameters['sort'] = sort;
-    if (lastUpdate != null) queryParameters['last-update'] = lastUpdate.toString();
+    if (lastUpdate != null) queryParameters['last_update'] = lastUpdate.toString();
     
     ApiRequestResponse result = await ApiRequest(apiProperties, [resourcePath], queryParameters: queryParameters).request();
 
