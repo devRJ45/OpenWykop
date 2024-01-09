@@ -133,7 +133,6 @@ class _ContentBodyState extends State<ContentBody> {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(width: 1, color: Theme.of(context).colorScheme.outline),
                 color: Theme.of(context).colorScheme.surfaceVariant,
               ),
               child: RichText(
