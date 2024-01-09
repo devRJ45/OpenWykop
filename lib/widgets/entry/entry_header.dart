@@ -1,17 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
+import 'package:timeago/timeago.dart' as timeago;
 
 class EntryHeader extends StatelessWidget {
 
   final api_models.ProfileShort? userData;
-  final String? timeago;
+  final String? entryCreatedAt;
   final VoidCallback? onTapMoreButton;
 
   EntryHeader({
     super.key,
     this.userData,
-    this.timeago,
+    this.entryCreatedAt,
     this.onTapMoreButton,
   });
 
@@ -42,12 +43,21 @@ class EntryHeader extends StatelessWidget {
   Widget build(BuildContext context) {
 
     String username = userData?.username ?? '?????';
-    String timeagoText = timeago ?? 'Przed chwilą';
+    String timeagoText = 'chwilę temu';
     String avatar = userData?.avatar ?? '';
     String userColor = userData?.color ?? 'orange';
     bool genderIsSet = userData?.gender == 'm' ||userData?.gender == 'f';
     Color genderColor = _getGenderColor(userData?.gender);
 
+    try {
+      if (entryCreatedAt == null) {
+        timeagoText = timeago.format(DateTime.now(), locale: 'pl');
+      } else {
+        timeagoText = timeago.format(DateTime.parse(entryCreatedAt!), locale: 'pl');
+      }
+    } catch (e) {
+      timeagoText = 'chwilę temu';
+    }
 
     double avatarSize = Theme.of(context).textTheme.headlineLarge?.fontSize ?? 16;
     avatarSize = avatarSize * 1.1;

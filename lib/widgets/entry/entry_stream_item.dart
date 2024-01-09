@@ -51,7 +51,7 @@ class EntryStreamItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         children: [
-          EntryHeader(userData: entryData.author),
+          EntryHeader(userData: entryData.author, entryCreatedAt: entryData.createdAt),
           ..._buildContentWidgets().map((e) => Padding(
             padding: const EdgeInsets.only(top: 5),
             child: e,
