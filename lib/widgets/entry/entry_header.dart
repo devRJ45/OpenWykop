@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
-import 'package:timeago/timeago.dart' as timeago;
+import 'package:openwykop/services/timeago.dart';
 
 class EntryHeader extends StatelessWidget {
 
@@ -49,15 +49,7 @@ class EntryHeader extends StatelessWidget {
     bool genderIsSet = userData?.gender == 'm' ||userData?.gender == 'f';
     Color genderColor = _getGenderColor(userData?.gender);
 
-    try {
-      if (entryCreatedAt == null) {
-        timeagoText = timeago.format(DateTime.now(), locale: 'pl');
-      } else {
-        timeagoText = timeago.format(DateTime.parse(entryCreatedAt!), locale: 'pl');
-      }
-    } catch (e) {
-      timeagoText = 'chwilę temu';
-    }
+    timeagoText = Timeago.parse(entryCreatedAt ?? '');
 
     double avatarSize = Theme.of(context).textTheme.headlineLarge?.fontSize ?? 16;
     avatarSize = avatarSize * 1.1;
