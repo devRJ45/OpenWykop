@@ -35,6 +35,20 @@ class ProfileShort extends ApiModel {
     this.rank,
   );
 
+  String? getAvatar ({required int size}) {
+    if (avatar == null) {
+      return null;
+    }
+
+    int extensionPosition = avatar!.lastIndexOf('.');
+    
+    if (extensionPosition < 0) {
+      return null;
+    }
+
+    return '${avatar!.substring(0, extensionPosition)},q$size${avatar!.substring(extensionPosition)}';
+  }
+
   @override
   factory ProfileShort.fromJson(Map<String, dynamic> json) => _$ProfileShortFromJson(json);
   @override

@@ -44,7 +44,7 @@ class EntryHeader extends StatelessWidget {
 
     String username = userData?.username ?? '?????';
     String timeagoText = 'chwilę temu';
-    String avatar = userData?.avatar ?? '';
+    String avatar = userData?.getAvatar(size: 80) ?? '';
     String userColor = userData?.color ?? 'orange';
     bool genderIsSet = userData?.gender == 'm' ||userData?.gender == 'f';
     Color genderColor = _getGenderColor(userData?.gender);
