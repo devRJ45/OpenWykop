@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
 import 'package:openwykop/services/timeago.dart';
+import 'package:openwykop/services/wykop_colors.dart';
 
 class EntryHeader extends StatelessWidget {
 
@@ -9,24 +10,12 @@ class EntryHeader extends StatelessWidget {
   final String? entryCreatedAt;
   final VoidCallback? onTapMoreButton;
 
-  EntryHeader({
+  const EntryHeader({
     super.key,
     this.userData,
     this.entryCreatedAt,
     this.onTapMoreButton,
   });
-
-  Color _getUserColor (String colorName) {
-    switch (colorName) {
-      case 'green':
-        return const Color(0xff339933);
-      case 'burgundy':
-        return const Color(0xffc13838);
-      case 'orange':
-      default:
-        return const Color(0xffff5917);
-    }
-  }
 
   Color _getGenderColor (String? gender) {
     switch (gender) {
@@ -45,7 +34,7 @@ class EntryHeader extends StatelessWidget {
     String username = userData?.username ?? '?????';
     String timeagoText = 'chwilę temu';
     String avatar = userData?.getAvatar(size: 80) ?? '';
-    String userColor = userData?.color ?? 'orange';
+    Color userColor = WykopColorsService().getUserColor(userData?.color ?? 'orange');
     bool genderIsSet = userData?.gender == 'm' ||userData?.gender == 'f';
     Color genderColor = _getGenderColor(userData?.gender);
 
@@ -106,7 +95,7 @@ class EntryHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(username, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: _getUserColor(userColor))),
+                Text(username, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: userColor)),
                 Text(timeagoText, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey))
               ],
             )
