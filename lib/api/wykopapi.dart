@@ -26,6 +26,7 @@ class WykopApi {
   late BucketsResource buckets;
   late BadgesResource badges;
   late RankResource rank;
+  late ConfigResource config;
 
   WykopApi (this.apiProperties) {
     initializeResources();
@@ -51,5 +52,6 @@ class WykopApi {
     buckets = BucketsResource(apiProperties);
     badges = BadgesResource(apiProperties);
     rank = RankResource(apiProperties);
+    config = ConfigResource(apiProperties);
   }
 }
