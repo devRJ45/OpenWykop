@@ -23,8 +23,8 @@ class EntryHeader extends StatelessWidget {
     String username = userData?.username ?? '?????';
     String timeagoText = 'chwilę temu';
     String avatar = userData?.getAvatar(size: 80) ?? '';
-    Color userColor = WykopColorsService().getUserColor(userData?.color ?? 'orange');
-    bool genderIsSet = userData?.gender == 'm' ||userData?.gender == 'f';
+    Color userColor = WykopColorsService().getUserColor(userData?.color ?? 'orange', Theme.of(context).brightness == Brightness.dark);
+    bool genderIsSet = userData?.gender == 'm' || userData?.gender == 'f';
     Color genderColor = WykopColorsService().getGenderColor(userData?.gender);
 
     timeagoText = Timeago.parse(entryCreatedAt ?? '');
