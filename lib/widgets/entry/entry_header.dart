@@ -17,17 +17,6 @@ class EntryHeader extends StatelessWidget {
     this.onTapMoreButton,
   });
 
-  Color _getGenderColor (String? gender) {
-    switch (gender) {
-      case 'm':
-        return const Color(0xff4383af);
-      case 'f':
-        return const Color(0xffbf48a7);
-      default:
-        return Colors.black;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
 
@@ -36,7 +25,7 @@ class EntryHeader extends StatelessWidget {
     String avatar = userData?.getAvatar(size: 80) ?? '';
     Color userColor = WykopColorsService().getUserColor(userData?.color ?? 'orange');
     bool genderIsSet = userData?.gender == 'm' ||userData?.gender == 'f';
-    Color genderColor = _getGenderColor(userData?.gender);
+    Color genderColor = WykopColorsService().getGenderColor(userData?.gender);
 
     timeagoText = Timeago.parse(entryCreatedAt ?? '');
 

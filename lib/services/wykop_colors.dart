@@ -40,5 +40,16 @@ class WykopColorsService {
     return Color(int.parse('ff${apiColor.hex ?? '000000'}', radix: 16));
   }
 
+  Color getGenderColor (String? gender) {
+    switch (gender) {
+      case 'm':
+        return const Color(0xff4383af);
+      case 'f':
+        return const Color(0xffbf48a7);
+      default:
+        return Colors.black;
+    }
+  }
+
   WykopColorsService._internal();
 }
