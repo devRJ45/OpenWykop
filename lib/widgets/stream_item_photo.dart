@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
 
-class EntryPhoto extends StatefulWidget  {
+class StreamItemPhoto extends StatefulWidget  {
   
   final api_models.Photo? photoData;
   final bool isOnlyForAdult;
@@ -14,7 +14,7 @@ class EntryPhoto extends StatefulWidget  {
 
   final double maxAspectRatioWithoutEllapsed = 10/8;
   
-  const EntryPhoto({
+  const StreamItemPhoto({
     super.key,
     this.photoData,
     this.isOnlyForAdult = false,
@@ -24,10 +24,10 @@ class EntryPhoto extends StatefulWidget  {
   });
 
   @override
-  State<EntryPhoto> createState() => _EntryPhotoState();
+  State<StreamItemPhoto> createState() => _StreamItemPhotoState();
 }
 
-class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMixin {
+class _StreamItemPhotoState extends State<StreamItemPhoto> with AutomaticKeepAliveClientMixin {
 
   double originalAspectRatio = 1;
   bool isEllapsed = true;

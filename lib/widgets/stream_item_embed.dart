@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
 
-class EntryEmbed extends StatefulWidget  {
+class StreamItemEmbed extends StatefulWidget  {
   
   final api_models.Embed? embedData;
   final bool isOnlyForAdult;
@@ -12,7 +12,7 @@ class EntryEmbed extends StatefulWidget  {
   final VoidCallback? onTap;
   final VoidCallback? onLongPress;
   
-  const EntryEmbed({
+  const StreamItemEmbed({
     super.key,
     this.embedData,
     this.isOnlyForAdult = false,
@@ -22,10 +22,10 @@ class EntryEmbed extends StatefulWidget  {
   });
 
   @override
-  State<EntryEmbed> createState() => _EntryEmbedState();
+  State<StreamItemEmbed> createState() => _StreamItemEmbedState();
 }
 
-class _EntryEmbedState extends State<EntryEmbed> with AutomaticKeepAliveClientMixin {
+class _StreamItemEmbedState extends State<StreamItemEmbed> with AutomaticKeepAliveClientMixin {
 
   bool hideAdult = false;
 
