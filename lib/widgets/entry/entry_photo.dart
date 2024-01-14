@@ -31,18 +31,18 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
 
   double originalAspectRatio = 1;
   bool isEllapsed = true;
-  bool pausedGif = false;
+  bool isGif = false;
   bool hideAdult = true;
-  String imageUrl = '';
+  String thumbnailUrl = '';
 
   @override
   void initState() {
     super.initState();
     originalAspectRatio = (widget.photoData?.width ?? 1)/(widget.photoData?.height ?? 1);
     isEllapsed = originalAspectRatio < widget.maxAspectRatioWithoutEllapsed;
-    pausedGif = widget.photoData?.url?.contains('.gif') ?? false;
+    isGif = widget.photoData?.url?.contains('.gif') ?? false;
     hideAdult = true;
-    imageUrl = widget.photoData?.getThumbnailUrl() ?? '';
+    thumbnailUrl = widget.photoData?.getThumbnailUrl() ?? '';
   }
 
   void _onTapImage () {
@@ -51,13 +51,6 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
         hideAdult = false;
       });
       return;
-    }
-
-    if (pausedGif) {
-      setState(() {
-        pausedGif = false;
-        imageUrl = widget.photoData?.url ?? '';
-      });
     }
 
     if (isEllapsed) {
@@ -101,7 +94,7 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
           child: Stack(
             children: [
               CachedNetworkImage(
-                imageUrl: imageUrl,
+                imageUrl: thumbnailUrl,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -139,7 +132,7 @@ class _EntryPhotoState extends State<EntryPhoto> with AutomaticKeepAliveClientMi
                   )
                 ),
               ),
-              if (pausedGif)
+              if (isGif)
                 Positioned.fill(
                   child: Container(
                     alignment: Alignment.center,
