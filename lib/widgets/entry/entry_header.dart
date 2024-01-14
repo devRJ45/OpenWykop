@@ -41,20 +41,23 @@ class EntryHeader extends StatelessWidget {
           height: avatarSize,
           child: Stack(
             children: [
-              CachedNetworkImage(
-                imageUrl: avatar,
-                imageBuilder: (context, imageProvider) => Container(
-                  width: avatarSize,
-                  height: avatarSize,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: imageProvider, fit: BoxFit.cover),
+              if (avatar.isEmpty)
+                Icon(Icons.account_circle_outlined, size: avatarSize),
+              if (avatar.isNotEmpty)
+                CachedNetworkImage(
+                  imageUrl: avatar,
+                  imageBuilder: (context, imageProvider) => Container(
+                    width: avatarSize,
+                    height: avatarSize,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: imageProvider, fit: BoxFit.cover),
+                    ),
                   ),
+                  placeholder: (context, url) => Opacity(opacity: 0.5, child: Icon(Icons.account_circle_outlined, size: avatarSize)),
+                  errorWidget: (context, url, error) => Icon(Icons.account_circle_outlined, size: avatarSize),
                 ),
-                placeholder: (context, url) => Opacity(opacity: 0.5, child: Icon(Icons.account_circle_outlined, size: avatarSize)),
-                errorWidget: (context, url, error) => Icon(Icons.account_circle_outlined, size: avatarSize),
-              ),
               Visibility(
                 visible: genderIsSet,
                 child: Positioned(
