@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
+import 'package:openwykop/screens/entry_screen.dart';
 import 'package:openwykop/widgets/widgets.dart';
 
 class EntryStreamItem extends StatelessWidget {
@@ -30,11 +31,11 @@ class EntryStreamItem extends StatelessWidget {
     }
 
     if (havePhoto) {
-      widgets.add(EntryPhoto(photoData: entryData.media!.photo, isOnlyForAdult: isOnlyForAdult, isNSFW: isNSFW));
+      widgets.add(StreamItemPhoto(photoData: entryData.media!.photo, isOnlyForAdult: isOnlyForAdult, isNSFW: isNSFW));
     }
 
     if (haveEmbed) {
-      widgets.add(EntryEmbed(embedData: entryData.media!.embed));
+      widgets.add(StreamItemEmbed(embedData: entryData.media!.embed));
     }
 
     if (haveSurvey) {
@@ -58,7 +59,11 @@ class EntryStreamItem extends StatelessWidget {
           )).toList(),
           Padding(
             padding: const EdgeInsets.only(top: 5),
-            child: EntryActions(entryData: entryData),
+            child: EntryActions(entryData: entryData, onTapCommentsButton: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return EntryScreen(entryData: entryData,);
+              }));
+            },),
           ),
         ]
       )
