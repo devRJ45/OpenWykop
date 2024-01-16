@@ -18,8 +18,9 @@ enum DownVoteReason {
 class LinksResource extends ApiResource {
   LinksResource (ApiProperties apiProperties) : super(apiProperties, 'links');
 
-  Future<ApiOutputList<StreamItem>> getLinks ({int? page, String? pageHash, int? limit, String? sort, String? category, String? bucket}) async {
+  Future<ApiOutputList<StreamItem>> getLinks ({String? type, int? page, String? pageHash, int? limit, String? sort, String? category, String? bucket}) async {
     Map<String, String> queryParameters = {};
+    if (type != null) queryParameters['type'] = type.toString();
     if (page != null) queryParameters['page'] = page.toString();
     if (pageHash != null) queryParameters['page'] = pageHash;
     if (limit != null) queryParameters['limit'] = limit.toString();
