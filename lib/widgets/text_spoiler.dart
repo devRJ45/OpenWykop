@@ -17,18 +17,18 @@ class TextSpoiler extends StatefulWidget  {
 
 class _TextSpoilerState extends State<TextSpoiler> {
 
-  bool isEllapsed = true;
+  bool isCollapsed = true;
 
   void toggleVisibility () {
     setState(() {
-      isEllapsed = !isEllapsed;
+      isCollapsed = !isCollapsed;
     });
   }
   
   @override
   Widget build(BuildContext context) {
 
-    if (isEllapsed) {
+    if (isCollapsed) {
       return InkWell(
         onTap: toggleVisibility,
         child: Container(

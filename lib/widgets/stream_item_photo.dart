@@ -12,7 +12,7 @@ class StreamItemPhoto extends StatefulWidget  {
   final VoidCallback? onTapPhoto;
   final VoidCallback? onLongPressPhoto;
 
-  final double maxAspectRatioWithoutEllapsed = 10/8;
+  final double maxAspectRatioWithoutCollapsed = 10/8;
   
   const StreamItemPhoto({
     super.key,
@@ -30,7 +30,7 @@ class StreamItemPhoto extends StatefulWidget  {
 class _StreamItemPhotoState extends State<StreamItemPhoto> with AutomaticKeepAliveClientMixin {
 
   double originalAspectRatio = 1;
-  bool isEllapsed = true;
+  bool isCollapsed = true;
   bool isGif = false;
   bool hideAdult = true;
   String thumbnailUrl = '';
@@ -39,7 +39,7 @@ class _StreamItemPhotoState extends State<StreamItemPhoto> with AutomaticKeepAli
   void initState() {
     super.initState();
     originalAspectRatio = (widget.photoData?.width ?? 1)/(widget.photoData?.height ?? 1);
-    isEllapsed = originalAspectRatio < widget.maxAspectRatioWithoutEllapsed;
+    isCollapsed = originalAspectRatio < widget.maxAspectRatioWithoutCollapsed;
     isGif = widget.photoData?.url?.contains('.gif') ?? false;
     hideAdult = true;
     thumbnailUrl = widget.photoData?.getThumbnailUrl() ?? '';
@@ -53,9 +53,9 @@ class _StreamItemPhotoState extends State<StreamItemPhoto> with AutomaticKeepAli
       return;
     }
 
-    if (isEllapsed) {
+    if (isCollapsed) {
       setState(() {
-        isEllapsed = false;
+        isCollapsed = false;
       });
       return;
     }
@@ -90,7 +90,7 @@ class _StreamItemPhotoState extends State<StreamItemPhoto> with AutomaticKeepAli
         clipBehavior: Clip.antiAliasWithSaveLayer,
         color: Theme.of(context).colorScheme.surfaceVariant,
         child: AspectRatio(
-          aspectRatio: isEllapsed ? widget.maxAspectRatioWithoutEllapsed : originalAspectRatio,
+          aspectRatio: isCollapsed ? widget.maxAspectRatioWithoutCollapsed : originalAspectRatio,
           child: Stack(
             children: [
               CachedNetworkImage(
@@ -114,7 +114,7 @@ class _StreamItemPhotoState extends State<StreamItemPhoto> with AutomaticKeepAli
                 ),
               ),
               Visibility(
-                visible: isEllapsed,
+                visible: isCollapsed,
                 child: Positioned.fill(
                   bottom: -1,
                   child: Container(
