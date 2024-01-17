@@ -21,6 +21,9 @@ Comment _$CommentFromJson(Map<String, dynamic> json) => Comment(
           : Media.fromJson(json['media'] as Map<String, dynamic>),
       json['adult'] as bool?,
       (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      json['comments'] == null
+          ? null
+          : CommentsPage.fromJson(json['comments'] as Map<String, dynamic>),
       json['favourite'] as bool?,
       json['votes'] == null
           ? null
@@ -51,6 +54,7 @@ Map<String, dynamic> _$CommentToJson(Comment instance) => <String, dynamic>{
       'media': instance.media,
       'adult': instance.adult,
       'tags': instance.tags,
+      'comments': instance.comments,
       'favourite': instance.favourite,
       'votes': instance.votes,
       'deletable': instance.deletable,

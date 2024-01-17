@@ -29,7 +29,7 @@ Entry _$EntryFromJson(Map<String, dynamic> json) => Entry(
           : EntryVotes.fromJson(json['votes'] as Map<String, dynamic>),
       json['comments'] == null
           ? null
-          : EntryComments.fromJson(json['comments'] as Map<String, dynamic>),
+          : CommentsPage.fromJson(json['comments'] as Map<String, dynamic>),
       json['parent_id'] as int?,
       json['resource'] as String?,
       json['actions'] == null

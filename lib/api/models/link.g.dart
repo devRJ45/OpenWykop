@@ -26,7 +26,7 @@ Link _$LinkFromJson(Map<String, dynamic> json) => Link(
       json['voted'] as int?,
       json['comments'] == null
           ? null
-          : LinkComments.fromJson(json['comments'] as Map<String, dynamic>),
+          : CommentsPage.fromJson(json['comments'] as Map<String, dynamic>),
       (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
       json['hot'] as bool?,
       json['adult'] as bool?,

@@ -23,7 +23,7 @@ class Entry extends StreamItem {
   bool? deletable;
   String? slug;
   EntryVotes? votes;
-  EntryComments? comments;
+  CommentsPage? comments;
   @JsonKey(name: 'parent_id')
   int? parentId;
   EntryActions? actions;

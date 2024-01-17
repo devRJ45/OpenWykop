@@ -19,6 +19,7 @@ class Comment extends StreamItem {
   Media? media;
   bool? adult;
   List<String>? tags;
+  CommentsPage? comments;
   bool? favourite;
   CommentVotes? votes;
   bool? deletable;
@@ -40,6 +41,7 @@ class Comment extends StreamItem {
     this.media,
     this.adult,
     this.tags,
+    this.comments,
     this.favourite,
     this.votes,
     this.deletable,

@@ -21,7 +21,7 @@ class Link extends StreamItem {
   String? publishedAt;
   LinkVotes? votes;
   int? voted;
-  LinkComments? comments;
+  CommentsPage? comments;
   List<String>? tags;
   bool? hot;
   bool? adult;

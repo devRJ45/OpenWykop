@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'entry_comments.dart';
+part of 'comments_page.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-EntryComments _$EntryCommentsFromJson(Map<String, dynamic> json) =>
-    EntryComments(
+CommentsPage _$CommentsPageFromJson(Map<String, dynamic> json) => CommentsPage(
       (json['items'] as List<dynamic>?)
           ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
           .toList(),
       json['count'] as int?,
     );
 
-Map<String, dynamic> _$EntryCommentsToJson(EntryComments instance) =>
+Map<String, dynamic> _$CommentsPageToJson(CommentsPage instance) =>
     <String, dynamic>{
       'items': instance.items,
       'count': instance.count,
