@@ -94,6 +94,7 @@ class _ContentBodyState extends State<ContentBody> {
         );
     }
     return TextSpan(
+      style: segmentStyle,
       text: segment.text, 
     );
   }
