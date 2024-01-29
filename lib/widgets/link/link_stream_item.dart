@@ -23,6 +23,8 @@ class LinkStreamItem extends StatelessWidget {
     String timeagoText = 'chwilę temu';
     timeagoText = Timeago.parse(linkData.createdAt ?? '');
 
+    Color userColor = WykopColorsService().getUserColor(linkData.author?.color ?? 'orange', Theme.of(context).brightness == Brightness.dark);
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
@@ -40,7 +42,7 @@ class LinkStreamItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(right: 5),
-                  child: WykopAvatarCircle(avatarUrl: linkData.author?.getAvatar(size: 80), size: Theme.of(context).textTheme.bodyMedium?.fontSize ?? 16),
+                  child: WykopAvatar(avatarUrl: linkData.author?.getAvatar(size: 80), size: Theme.of(context).textTheme.bodyMedium?.fontSize ?? 16, backgroundColor: userColor,),
                 ),
                 Expanded(
                   child: RichText(
@@ -50,7 +52,7 @@ class LinkStreamItem extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: linkData.author?.username ?? '',
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: WykopColorsService().getUserColor(linkData.author?.color ?? 'orange'), fontWeight: FontWeight.bold)
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(color: userColor, fontWeight: FontWeight.bold)
                         ),
                         TextSpan(
                           text: ' • $timeagoText • ${linkData.tags?.map((tag) => '#$tag').join(' ')}',

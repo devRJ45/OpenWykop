@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
+import 'package:openwykop/services/wykop_colors.dart';
 import 'package:openwykop/widgets/widgets.dart';
 
 class CommentStreamItem extends StatelessWidget {
@@ -43,6 +44,7 @@ class CommentStreamItem extends StatelessWidget {
   Widget build(BuildContext context) {
 
     String avatar = commentData.author?.getAvatar(size: 80) ?? '';
+    Color userColor = WykopColorsService().getUserColor(commentData.author?.color ?? 'orange', Theme.of(context).brightness == Brightness.dark);
 
     double avatarSize = Theme.of(context).textTheme.headlineLarge?.fontSize ?? 16;
     avatarSize = avatarSize * 1.1;
@@ -53,7 +55,7 @@ class CommentStreamItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          WykopAvatarCircle(size: avatarSize, avatarUrl: avatar, gender: commentData.author?.gender),
+          WykopAvatar(size: avatarSize, avatarUrl: avatar, gender: commentData.author?.gender, backgroundColor: userColor),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 8),

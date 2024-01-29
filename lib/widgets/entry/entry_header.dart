@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:openwykop/api/models/models.dart' as api_models;
 import 'package:openwykop/services/timeago.dart';
 import 'package:openwykop/services/wykop_colors.dart';
-import 'package:openwykop/widgets/wykop_avatar_circle.dart';
+import 'package:openwykop/widgets/widgets.dart';
 
 class EntryHeader extends StatelessWidget {
 
@@ -34,7 +34,7 @@ class EntryHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        WykopAvatarCircle(size: avatarSize, avatarUrl: avatar, gender: userData?.gender),
+        WykopAvatar(size: avatarSize, avatarUrl: avatar, gender: userData?.gender, backgroundColor: userColor),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(left: 8),

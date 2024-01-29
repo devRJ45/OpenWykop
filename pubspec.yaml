@@ -76,6 +76,7 @@ flutter:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   assets:
+    - assets/avatar/default.png
     - assets/embed_logo/x-white.png
     - assets/embed_logo/instagram-white.png
     - assets/embed_logo/streamable-white.png
